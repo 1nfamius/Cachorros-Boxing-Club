@@ -3,7 +3,7 @@
     "id": 1,
     "nombre": "Guantes de boxeo",
     "precio": 49.99,
-    "imagenes": ["img/guantes-1.jpg", "img/guantes-2.jpg"],
+    "imagenes": ["/tienda/img/producto/guantes-1.webp", "/tienda/img/producto/guantes-2.webp"],
     "tallas": ["S", "M", "L", "XL"],
     "colores": ["negro", "rojo", "azul"],
     "descripcion": "Guantes profesionales para entrenamiento y combate."
@@ -12,7 +12,7 @@
     "id": 2,
     "nombre": "Camiseta entrenamiento",
     "precio": 24.99,
-    "imagenes": ["img/camiseta-1.jpg", "img/camiseta-2.jpg"],
+    "imagenes": ["/tienda/img/producto/camiseta-1.webp", "/tienda/img/producto/camiseta-2.webp"],
     "tallas": ["XS", "S", "M", "L", "XL", "XXL"],
     "colores": ["negro", "blanco", "gris"],
     "descripcion": "Camiseta técnica transpirable para entrenamientos intensos."
@@ -21,7 +21,7 @@
     "id": 3,
     "nombre": "Vendas para manos",
     "precio": 12.99,
-    "imagenes": ["img/vendas-1.jpg"],
+    "imagenes": ["/tienda/img/producto/vendas-1.webp", "/tienda/img/producto/vendas-2.webp"],
     "tallas": [],
     "colores": ["negro", "rojo", "azul", "blanco"],
     "descripcion": "Vendas elásticas de 4.5m para protección de manos y muñecas."
@@ -30,7 +30,7 @@
     "id": 4,
     "nombre": "Saco de boxeo",
     "precio": 89.99,
-    "imagenes": ["img/saco-1.jpg", "img/saco-2.jpg"],
+    "imagenes": ["/tienda/img/producto/saco-1.webp", "/tienda/img/producto/saco-2.webp"],
     "tallas": [],
     "colores": ["negro", "rojo"],
     "descripcion": "Saco de entrenamiento relleno de alta densidad."
@@ -39,7 +39,7 @@
     "id": 5,
     "nombre": "Protector bucal",
     "precio": 9.99,
-    "imagenes": ["img/protector-1.jpg"],
+    "imagenes": ["/tienda/img/producto/protector-1.webp"],
     "tallas": [],
     "colores": ["negro", "transparente"],
     "descripcion": "Protector bucal termomoldeable para máxima protección."
@@ -48,7 +48,7 @@
     "id": 6,
     "nombre": "Short de boxeo",
     "precio": 34.99,
-    "imagenes": ["img/short-1.jpg", "img/short-2.jpg"],
+    "imagenes": ["/tienda/img/producto/short-1.webp", "/tienda/img/producto/short-2.webp"],
     "tallas": ["S", "M", "L", "XL"],
     "colores": ["negro", "rojo", "azul"],
     "descripcion": "Short oficial de competición con tejido satinado."

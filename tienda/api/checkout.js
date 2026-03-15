@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
       line_items,
       mode: "payment",
       // Stripe redirige aquí cuando el pago es correcto
-      success_url: `${process.env.NEXT_PUBLIC_URL}/success.html`,
+      success_url: `${process.env.NEXT_PUBLIC_URL}/tienda\success.html`,
       // Stripe redirige aquí si el usuario cancela
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/`,
       // Stripe genera la factura automáticamente
