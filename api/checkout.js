@@ -25,14 +25,13 @@ module.exports = async (req, res) => {
         currency: "eur",
         product_data: {
           name: item.nombre,
-          // Añadimos talla y color como descripción del producto
           description: [
             item.talla !== "unica" ? `Talla: ${item.talla}` : null,
             item.color ? `Color: ${item.color}` : null
           ].filter(Boolean).join(" · "),
         },
-        // Stripe trabaja en céntimos, multiplicamos por 100
         unit_amount: Math.round(item.precio * 100),
+        tax_behavior: "inclusive", // ← esto es lo que falta
       },
       quantity: item.qty,
     }));
