@@ -3,80 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iron Fist Boxing</title>
-  <link rel="stylesheet" href="/tienda\css\tienda.css">
+  <title>Tienda – Cachorros Boxing Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/tienda/css/tienda.css">
 </head>
 <body>
-
-<div class="shop">
-
-  <!-- HEADER -->
-  <div class="header">
-    <h1>Iron Fist Boxing</h1>
-    <button class="cart-btn" onclick="toggleCart()">
-      Carrito
-      <span class="cart-count" id="cart-count">0</span>
-    </button>
-  </div>
-
-  <!-- GRID DE PRODUCTOS -->
-  <div class="products" id="products"></div>
-
-</div>
-
-<!-- MODAL DE PRODUCTO (tallas, colores, imágenes) -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal()"></div>
-<div class="modal" id="modal">
-  <button class="modal-close" onclick="closeModal()">×</button>
-  <div class="modal-imgs" id="modal-imgs"></div>
-  <div class="modal-info">
-    <h2 id="modal-name"></h2>
-    <p id="modal-desc"></p>
-    <p class="modal-price" id="modal-price"></p>
-
-    <!-- SELECTOR DE COLOR -->
-    <div class="selector" id="color-selector">
-      <p class="selector-label">Color</p>
-      <div class="selector-options" id="color-options"></div>
+  <header>
+  <nav>
+    <div class="header-logo-box">
+      <img class="nav-logo-foto" src="/img/cachorros-boxing-club.webp" alt="Cachorros Boxing Club"/>
+      <a href="/" class="nav-logo-title">CACHORROS <span>BOXING</span></a>
     </div>
 
-    <!-- SELECTOR DE TALLA -->
-    <div class="selector" id="talla-selector">
-      <p class="selector-label">Talla</p>
-      <div class="selector-options" id="talla-options"></div>
+    <div class="nav-tienda">
+      <!-- Nav escritorio -->
+      <ul class="nav-links">
+        <li><a href="/#disciplinas">Disciplinas</a></li>
+        <li><a href="/#horarios">Horarios</a></li>
+        <li><a href="/#contacto">Contacto</a></li>
+      </ul>
+
+      <!-- Siempre visible, en escritorio y móvil -->
+      <div class="nav-right">
+        <button class="cart-btn" onclick="toggleCart()">
+          Carrito
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+        <button class="hamburger" id="hamburger-btn" aria-label="Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
 
-    <button class="modal-add-btn" onclick="addFromModal()">Añadir al carrito</button>
-    <p class="modal-error" id="modal-error"></p>
-  </div>
-</div>
+  </nav>
+ 
+  <!-- Menú móvil desplegable -->
+  <ul class="nav-mobile" id="nav-mobile">
+    <li><a href="/#disciplinas">Disciplinas</a></li>
+    <li><a href="/#horarios">Horarios</a></li>
+    <li><a href="/#contacto">Contacto</a></li>
+  </ul>
+</header>
 
-<!-- OVERLAY OSCURO DEL CARRITO -->
-<div class="cart-overlay" id="overlay" onclick="toggleCart()"></div>
+  <main class="tienda-main">
 
-<!-- PANEL DEL CARRITO -->
-<div class="cart-panel" id="cart-panel">
-  <div class="cart-header">
-    <h2>Tu carrito</h2>
-    <button class="close-btn" onclick="toggleCart()">×</button>
-  </div>
-  <div class="cart-items" id="cart-items">
-    <p class="cart-empty">El carrito está vacío</p>
-  </div>
-  <div class="cart-footer">
-    <div class="cart-total">
-      <span>Total</span>
-      <span id="cart-total">0.00 €</span>
+    <!-- CABECERA TIENDA -->
+    <div class="tienda-header">
+      <span class="section-tag">Equipamiento oficial</span>
+      <h1 class="section-title">Tienda</h1>
     </div>
-    <button class="checkout-btn" onclick="checkout()">Finalizar compra</button>
-    <button class="clear-btn" onclick="clearCart()">Vaciar carrito</button>
+
+    <!-- GRID DE PRODUCTOS -->
+    <div class="products" id="products"></div>
+
+  </main>
+
+  <!-- MODAL DE PRODUCTO -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal()"></div>
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-imgs" id="modal-imgs"></div>
+    <div class="modal-info">
+      <h2 id="modal-name"></h2>
+      <p id="modal-desc"></p>
+      <p class="modal-price" id="modal-price"></p>
+
+      <div class="selector" id="color-selector">
+        <p class="selector-label">Color</p>
+        <div class="selector-options" id="color-options"></div>
+      </div>
+
+      <div class="selector" id="talla-selector">
+        <p class="selector-label">Talla</p>
+        <div class="selector-options" id="talla-options"></div>
+      </div>
+
+      <button class="modal-add-btn" onclick="addFromModal()">Añadir al carrito</button>
+      <p class="modal-error" id="modal-error"></p>
+    </div>
   </div>
-</div>
 
-<!-- Orden importante: primero datos, luego lógica, luego render -->
-<script src="/tienda\js\products.js"></script>
-<script src="/tienda\js\cart.js"></script>
-<script src="/tienda\js\render.js"></script>
+  <!-- OVERLAY CARRITO -->
+  <div class="cart-overlay" id="overlay" onclick="toggleCart()"></div>
 
+  <!-- PANEL CARRITO -->
+  <div class="cart-panel" id="cart-panel">
+    <div class="cart-header">
+      <h2>Tu carrito</h2>
+      <button class="close-btn" onclick="toggleCart()">×</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <p class="cart-empty">El carrito está vacío</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cart-total">0.00 €</span>
+      </div>
+      <button class="checkout-btn" onclick="checkout()">Finalizar compra</button>
+      <button class="clear-btn" onclick="clearCart()">Vaciar carrito</button>
+    </div>
+  </div>
+
+  <!-- FOOTER (igual que el main) -->
+  <footer>
+    <span class="footer-logo">CACHORROS <span>BOXING</span> CLUB</span>
+    <p>© 2026 Cachorros Boxing Club · La Muela, Zaragoza</p>
+  </footer>
+
+  <script src="/tienda/js/products.js"></script>
+  <script src="/tienda/js/cart.js"></script>
+  <script src="/tienda/js/render.js"></script>
+  <script src="/js/hamburger.js"></script>
 </body>
 </html>

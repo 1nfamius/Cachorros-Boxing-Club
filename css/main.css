@@ -1,0 +1,360 @@
+      /* =====================
+       HERO
+       ===================== */
+ 
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 4rem;
+      background: var(--negro);
+    }
+ 
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 70% 50%, rgba(204,0,0,0.12) 0%, transparent 60%),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 80px,
+          rgba(255,255,255,0.015) 80px,
+          rgba(255,255,255,0.015) 81px
+        );
+    }
+ 
+    .hero-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--rojo);
+    }
+ 
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+ 
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--rojo);
+      margin-bottom: 1.5rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--rojo);
+    }
+ 
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      line-height: 0.92;
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+ 
+    .hero-title span { color: var(--rojo); }
+ 
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--gris-claro);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+ 
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+ 
+    .btn-primary {
+      background: var(--rojo);
+      color: var(--blanco);
+      padding: 1rem 2.2rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+ 
+    .btn-primary:hover { background: var(--rojo-oscuro); transform: translateY(-1px); }
+ 
+    .btn-secondary {
+      background: transparent;
+      color: var(--blanco);
+      padding: 1rem 2.2rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.1s;
+    }
+ 
+    .btn-secondary:hover { border-color: var(--rojo); transform: translateY(-1px); }
+ 
+    .hero-numero {
+      position: absolute;
+      right: 4rem;
+      bottom: 3rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 12rem;
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      user-select: none;
+    }
+ 
+    /* =====================
+       DISCIPLINAS
+       ===================== */
+ 
+    .disciplinas {
+      padding: 6rem 4rem;
+      background: var(--gris-oscuro);
+      position: relative;
+    }
+ 
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+ 
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--rojo);
+    }
+ 
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 2px;
+    }
+ 
+    .disciplinas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+ 
+    .disciplina-card {
+      background: var(--gris-oscuro);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+ 
+    .disciplina-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--rojo);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+ 
+    .disciplina-card:hover { background: var(--gris-medio); }
+    .disciplina-card:hover::before { transform: scaleX(1); }
+ 
+    .disciplina-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+ 
+    .disciplina-nombre {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+    }
+ 
+    .disciplina-desc {
+      font-size: 0.9rem;
+      color: var(--gris-claro);
+      line-height: 1.7;
+    }
+ 
+    .disciplina-niveles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+ 
+    .nivel-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--rojo);
+      border: 1px solid rgba(204,0,0,0.4);
+      padding: 0.3rem 0.7rem;
+    }
+ 
+    /* =====================
+       HORARIOS
+       ===================== */
+ 
+    .horarios {
+      padding: 6rem 4rem;
+      background: var(--negro);
+    }
+ 
+    .horarios-table-wrap {
+      overflow-x: auto;
+      margin-top: 2rem;
+    }
+ 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+ 
+    thead th {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: var(--rojo);
+      padding: 1rem 1.2rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(204,0,0,0.3);
+    }
+ 
+    thead th:first-child { text-align: left; color: var(--gris-claro); }
+ 
+    tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); }
+    tbody tr:hover { background: rgba(255,255,255,0.02); }
+ 
+    tbody td {
+      padding: 0.85rem 1.2rem;
+      text-align: center;
+      color: var(--gris-claro);
+      font-size: 0.8rem;
+    }
+ 
+    tbody td:first-child {
+      text-align: left;
+      font-weight: 700;
+      color: var(--blanco);
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+    }
+ 
+    .clase-boxeo { color: var(--blanco); font-weight: 600; }
+    .clase-kick { color: #FF8C00; font-weight: 600; }
+    .clase-grappling { color: #5B9BD5; font-weight: 600; }
+    .clase-funcional { color: #70AD47; font-weight: 600; }
+    .clase-libre { color: var(--gris-claro); }
+ 
+    /* =====================
+       CONTACTO
+       ===================== */
+ 
+    .contacto {
+      padding: 6rem 4rem;
+      background: var(--gris-oscuro);
+    }
+ 
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+ 
+    .contacto-info { display: flex; flex-direction: column; gap: 2rem; }
+ 
+    .info-item { display: flex; flex-direction: column; gap: 0.4rem; }
+ 
+    .info-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rojo);
+    }
+ 
+    .info-value {
+      font-size: 1rem;
+      color: var(--blanco);
+      text-decoration: none;
+    }
+ 
+    .info-value:hover { color: var(--rojo); }
+ 
+    .redes {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+ 
+    .red-btn {
+      text-align: center;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gris-claro);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      width: 120px;
+    }
+ 
+    .red-btn:hover { border-color: var(--rojo); color: var(--blanco); }
+ 
+    .mapa {
+      width: 100%;
+      height: 350px;
+      border: 0;
+    }
+ 
+    /* =====================
+       RESPONSIVE
+       ===================== */
+ 
+    @media (max-width: 768px) {
+      .hero { padding: 8rem 1.5rem 4rem; }
+      .hero-numero { display: none; }
+      .disciplinas, .horarios, .contacto { padding: 4rem 1.5rem; }
+      .disciplinas-grid { grid-template-columns: 1fr; }
+      .contacto-grid { grid-template-columns: 1fr; gap: 2rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+      .redes {flex-direction: row}
+    }

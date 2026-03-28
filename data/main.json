@@ -1,0 +1,19 @@
+{
+  "disciplinas": [
+    {
+      "nombre": "Boxeo",
+      "descripcion": "El arte del boxeo en su forma más pura.",
+      "niveles": ["Infantil", "Recreativo", "Amateur", "Profesional"]
+    },
+    {
+      "nombre": "Kickboxing",
+      "descripcion": "Combinación de boxeo y patadas.",
+      "niveles": ["Infantil 1", "Infantil 2", "Joven", "Adulto"]
+    },
+    {
+      "nombre": "Grappling",
+      "descripcion": "Arte marcial de lucha en el suelo.",
+      "niveles": ["Todos los niveles"]
+    }
+  ]
+}

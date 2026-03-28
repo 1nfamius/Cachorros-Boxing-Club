@@ -5,7 +5,7 @@
 let products = [];
 
 // Carga el JSON y arranca el render
-fetch("data/products.json")
+fetch("/tienda//data/products.json")
   .then(res => res.json())
   .then(data => {
     products = data;
@@ -14,3 +14,4 @@ fetch("data/products.json")
   .catch(err => {
     console.error("Error cargando productos:", err);
   });
+

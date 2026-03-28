@@ -49,8 +49,9 @@ module.exports = async (req, res) => {
       shipping_address_collection: {
         allowed_countries: ["ES"],
       },
+      automatic_tax: { enabled: true },
       success_url: `${process.env.NEXT_PUBLIC_URL}/tienda/success.html`,
-      cancel_url: `${process.env.NEXT_PUBLIC_URL}/tienda/`,
+      cancel_url: `${process.env.NEXT_PUBLIC_URL}/tienda/index.html`,
       invoice_creation: { enabled: true },
     });
 

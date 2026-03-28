@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cachorros Boxing Club – La Muela, Zaragoza</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/js/hamburger.js"></script>
+</head>
+
+<body>     
+    <!-- NAVBAR -->
+  <header>
+    <nav>
+      <div class="header-logo-box">
+        <img class="nav-logo-foto"
+          src="/img/cachorros-boxing-club.webp"
+          alt="Cachorros Boxing Club"/>
+        <a href="/" class="nav-logo-title">CACHORROS <span>BOXING</span></a>
+      </div>
+  
+      <!-- Nav escritorio -->
+      <ul class="nav-links">
+        <li><a href="/#disciplinas">Disciplinas</a></li>
+        <li><a href="/#horarios">Horarios</a></li>
+        <li><a href="/#contacto">Contacto</a></li>
+        <li><a href="/tienda" class="nav-cta">Tienda</a></li>
+      </ul>
+  
+      <!-- Botón hamburguesa (solo visible en móvil) -->
+      <button class="hamburger" id="hamburger-btn" aria-label="Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+      </button>
+    </nav>
+  
+    <!-- Menú móvil desplegable -->
+    <ul class="nav-mobile" id="nav-mobile">
+      <li><a href="/#disciplinas">Disciplinas</a></li>
+      <li><a href="/#horarios">Horarios</a></li>
+      <li><a href="/#contacto">Contacto</a></li>
+      <li><a href="/tienda" class="nav-cta">Tienda</a></li>
+    </ul>
+  </header>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-line"></div>
+      <div class="hero-content">
+        <span class="hero-tag">La Muela, Zaragoza</span>
+        <h1 class="hero-title">CACHORROS<br><span>BOXING</span><br>CLUB</h1>
+        <p class="hero-sub">Escuela de boxeo, kickboxing y grappling para todos los niveles. Desde infantil hasta competición profesional.</p>
+        <div class="hero-btns">
+          <a href="#contacto" class="btn-primary">Contacta con nosotros</a>
+          <a href="#horarios" class="btn-secondary">Ver horarios</a>
+        </div>
+      </div>
+      <div class="hero-numero">CBC</div>
+    </section>
+  
+    <!-- DISCIPLINAS -->
+    <section class="disciplinas" id="disciplinas">
+      <div class="section-header">
+        <span class="section-tag">Lo que entrenamos</span>
+        <h2 class="section-title">Disciplinas</h2>
+      </div>
+      <div class="disciplinas-grid">
+        <div class="disciplina-card">
+          <div class="disciplina-num">01</div>
+          <h3 class="disciplina-nombre">Boxeo</h3>
+          <p class="disciplina-desc">El arte del boxeo en su forma más pura. Técnica, velocidad, potencia y disciplina mental para competir o simplemente estar en forma.</p>
+          <div class="disciplina-niveles">
+            <span class="nivel-tag">Infantil</span>
+            <span class="nivel-tag">Recreativo</span>
+            <span class="nivel-tag">Amateur</span>
+            <span class="nivel-tag">Profesional</span>
+          </div>
+        </div>
+        <div class="disciplina-card">
+          <div class="disciplina-num">02</div>
+          <h3 class="disciplina-nombre">Kickboxing</h3>
+          <p class="disciplina-desc">Combinación de boxeo y patadas que trabaja el cuerpo completo. Clases para todos los niveles con un enfoque progresivo y seguro.</p>
+          <div class="disciplina-niveles">
+            <span class="nivel-tag">Infantil 1</span>
+            <span class="nivel-tag">Infantil 2</span>
+            <span class="nivel-tag">Joven</span>
+            <span class="nivel-tag">Adulto</span>
+          </div>
+        </div>
+        <div class="disciplina-card">
+          <div class="disciplina-num">03</div>
+          <h3 class="disciplina-nombre">Grappling</h3>
+          <p class="disciplina-desc">Arte marcial de lucha en el suelo. Aprende técnicas de control, sumisión y defensa personal en un entorno seguro y controlado.</p>
+          <div class="disciplina-niveles">
+            <span class="nivel-tag">Todos los niveles</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- HORARIOS -->
+    <section class="horarios" id="horarios">
+      <div class="section-header">
+        <span class="section-tag">Semana</span>
+        <h2 class="section-title">Horarios</h2>
+      </div>
+      <div class="horarios-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Hora</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miércoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>10:00 – 11:30</td>
+              <td><span class="clase-boxeo">Boxeo</span></td>
+              <td>—</td>
+              <td><span class="clase-boxeo">Boxeo</span></td>
+              <td>—</td>
+              <td><span class="clase-boxeo">Boxeo</span></td>
+            </tr>
+            <tr>
+              <td>16:30 – 17:30</td>
+              <td><span class="clase-boxeo">Boxeo Infantil</span></td>
+              <td>—</td>
+              <td><span class="clase-boxeo">Boxeo Infantil</span></td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>17:30 – 19:00</td>
+              <td><span class="clase-boxeo">Boxeo</span></td>
+              <td>—</td>
+              <td><span class="clase-boxeo">Boxeo</span></td>
+              <td>—</td>
+              <td><span class="clase-boxeo">Boxeo</span></td>
+            </tr>
+            <tr>
+              <td>18:00 – 19:00</td>
+              <td>—</td>
+              <td><span class="clase-kick">Kickboxing Infantil 1</span></td>
+              <td>—</td>
+              <td><span class="clase-kick">Kickboxing Infantil 1</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>18:30 – 19:30</td>
+              <td><span class="clase-kick">Kickboxing Joven</span></td>
+              <td>—</td>
+              <td><span class="clase-kick">Kickboxing Joven</span></td>
+              <td>—</td>
+              <td><span class="clase-kick">Kickboxing Joven</span></td>
+            </tr>
+            <tr>
+              <td>18:30 – 20:00</td>
+              <td>—</td>
+              <td><span class="clase-funcional">Entrenamiento Funcional</span></td>
+              <td>—</td>
+              <td><span class="clase-funcional">Entrenamiento Funcional</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>19:00 – 20:00</td>
+              <td>—</td>
+              <td><span class="clase-kick">Kickboxing Infantil 2</span></td>
+              <td>—</td>
+              <td><span class="clase-kick">Kickboxing Infantil 2</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>19:00 – 20:30</td>
+              <td><span class="clase-boxeo">Boxeo</span></td>
+              <td>—</td>
+              <td><span class="clase-boxeo">Boxeo</span></td>
+              <td>—</td>
+              <td><span class="clase-boxeo">Boxeo</span></td>
+            </tr>
+            <tr>
+              <td>20:00 – 21:00</td>
+              <td>—</td>
+              <td>—</td>
+              <td><span class="clase-libre">Sparring</span></td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>20:15 – 21:30</td>
+              <td><span class="clase-kick">Kickboxing</span></td>
+              <td><span class="clase-grappling">Grappling</span></td>
+              <td><span class="clase-kick">Kickboxing</span></td>
+              <td><span class="clase-grappling">Grappling</span></td>
+              <td><span class="clase-kick">Kickboxing</span></td>
+            </tr>
+            <tr>
+              <td>20:30 – 21:30</td>
+              <td><span class="clase-libre">Boxeo Libre</span></td>
+              <td>—</td>
+              <td><span class="clase-libre">Boxeo Libre</span></td>
+              <td>—</td>
+              <td><span class="clase-libre">Boxeo Libre</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  
+    <!-- CONTACTO -->
+    <section class="contacto" id="contacto">
+      <div class="section-header">
+        <span class="section-tag">Únete</span>
+        <h2 class="section-title">Contacto</h2>
+      </div>
+      <div class="contacto-grid">
+        <div class="contacto-info">
+          <div class="info-item">
+            <span class="info-label">Teléfono</span>
+            <a href="tel:+34601563460" class="info-value">601 56 34 60</a>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Dirección</span>
+            <a class="info-value" href="https://maps.app.goo.gl/kQxY2wAFN4ESrayZA" target="_blank">Camino Viejo S/N<br>La Muela, Zaragoza 50196</a>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Síguenos</span>
+            <div class="redes">
+              <a href="https://www.instagram.com/thecrewcachorros_official/" target="_blank" class="red-btn">Instagram</a>
+              <a href="https://www.tiktok.com/@cachorrosboxing" target="_blank" class="red-btn"> TikTok </a>
+              <a href="https://www.facebook.com/people/Cachorros-Boxing-Club/100092506751911/" target="_blank" class="red-btn">Facebook</a>
+            </div>
+          </div>
+        </div>
+        <iframe
+          class="mapa"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.141135048938!2d-1.110715209407599!3d41.58792692905774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd595db536fab2d3%3A0x43b478bf8de2a527!2sCachorros%20Boxing%20Club!5e1!3m2!1ses!2ses!4v1774637600841!5m2!1ses!2ses"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+      </div>
+    </section>
+  </main>
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">CACHORROS <span>BOXING</span> CLUB</span>
+    <p>© 2026 Cachorros Boxing Club · La Muela, Zaragoza</p>
+  </footer>
+ 
+</body>
+</html>
