@@ -7,8 +7,11 @@ content:
     label: "Noticias y Eventos"
     type: "collection"
     path: "content/noticias"
+    slug: "{{titulo}}"
+
     view:
       fields: ["titulo", "fecha", "tipo"]
+
     fields:
       - name: "titulo"
         label: "Título"
@@ -37,10 +40,11 @@ content:
       - name: "imagen"
         label: "Imagen destacada"
         type: "image"
+        required: true
 
       - name: "resumen"
         label: "Resumen corto"
-        type: "string"
+        type: "text"
 
       - name: "body"
         label: "Contenido"
