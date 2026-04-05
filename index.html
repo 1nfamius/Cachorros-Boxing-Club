@@ -3,8 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cachorros Boxing Club – La Muela, Zaragoza</title>
-
+ 
+  <!-- =====================
+       SEO BÁSICO
+       ===================== -->
+  <title>Cachorros Boxing Club – Boxeo, Kickboxing y Grappling en La Muela, Zaragoza</title>
+  <meta name="description" content="Escuela de boxeo, kickboxing y grappling en La Muela, Zaragoza. Clases para todos los niveles: infantil, recreativo, amateur y profesional. ¡Apúntate ahora!">
+  <meta name="keywords" content="boxeo La Muela, kickboxing Zaragoza, grappling Zaragoza, artes marciales La Muela, gym boxeo Zaragoza, escuela boxeo Zaragoza, Cachorros Boxing Club">
+  <meta name="author" content="Cachorros Boxing Club">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://cachorros-boxing-club.vercel.app/">
+ 
+  <!-- =====================
+       OPEN GRAPH (redes sociales)
+       ===================== -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cachorros-boxing-club.vercel.app/">
+  <meta property="og:title" content="Cachorros Boxing Club – Boxeo, Kickboxing y Grappling en La Muela">
+  <meta property="og:description" content="Escuela de boxeo, kickboxing y grappling en La Muela, Zaragoza. Clases para todos los niveles. ¡Apúntate ahora!">
+  <meta property="og:image" content="https://cachorros-boxing-club.vercel.app/img/cachorros-boxing-club.webp">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Cachorros Boxing Club">
+ 
+  <!-- =====================
+       TWITTER CARD
+       ===================== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cachorros Boxing Club – La Muela, Zaragoza">
+  <meta name="twitter:description" content="Escuela de boxeo, kickboxing y grappling en La Muela, Zaragoza. Todos los niveles.">
+  <meta name="twitter:image" content="https://cachorros-boxing-club.vercel.app/img/cachorros-boxing-club.webp">
+ 
+  <!-- =====================
+       DATOS ESTRUCTURADOS (Google)
+       ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "Cachorros Boxing Club",
+    "description": "Escuela de boxeo, kickboxing y grappling en La Muela, Zaragoza. Clases para todos los niveles.",
+    "url": "https://cachorros-boxing-club.vercel.app",
+    "telephone": "+34601563460",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Camino Viejo S/N",
+      "addressLocality": "La Muela",
+      "addressRegion": "Zaragoza",
+      "postalCode": "50196",
+      "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.5879,
+      "longitude": -1.1107
+    },
+    "sameAs": [
+      "https://www.instagram.com/thecrewcachorros_official/",
+      "https://www.tiktok.com/@cachorrosboxing",
+      "https://www.facebook.com/people/Cachorros-Boxing-Club/100092506751911/"
+    ],
+    "sport": ["Boxeo", "Kickboxing", "Grappling"],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Wednesday", "Friday"],
+        "opens": "10:00",
+        "closes": "21:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Tuesday", "Thursday"],
+        "opens": "18:00",
+        "closes": "21:30"
+      }
+    ]
+  }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico"/>
   <link rel="stylesheet" href="/css/styles.css">
@@ -28,6 +102,7 @@
         <li><a href="/#disciplinas">Disciplinas</a></li>
         <li><a href="/#horarios">Horarios</a></li>
         <li><a href="/#contacto">Contacto</a></li>
+        <li><a href="/#inscripcion">Inscripcion</a></li>
         <li><a href="/noticias">Noticias</a></li>
         <li><a href="/tienda" class="nav-cta">Tienda</a></li>
       </ul>
@@ -45,6 +120,7 @@
       <li><a href="/#disciplinas">Disciplinas</a></li>
       <li><a href="/#horarios">Horarios</a></li>
       <li><a href="/#contacto">Contacto</a></li>
+      <li><a href="/#inscripcion">Inscripcion</a></li>
       <li><a href="/noticias">Noticias</a></li>
       <li><a href="/tienda" class="nav-cta">Tienda</a></li>
     </ul>
@@ -59,7 +135,7 @@
         <h1 class="hero-title">CACHORROS<br><span>BOXING</span><br>CLUB</h1>
         <p class="hero-sub">Escuela de boxeo, kickboxing y grappling para todos los niveles. Desde infantil hasta competición profesional.</p>
         <div class="hero-btns">
-          <a href="#contacto" class="btn-primary">Contacta con nosotros</a>
+          <a href="https://app.cluber.es/clubes/68a351b99873a282869507/inscripcion" class="btn-primary">Inscríbete ahora</a>
           <a href="#horarios" class="btn-secondary">Ver horarios</a>
         </div>
       </div>
@@ -89,8 +165,7 @@
           <h3 class="disciplina-nombre">Kickboxing</h3>
           <p class="disciplina-desc">Combinación de boxeo y patadas que trabaja el cuerpo completo. Clases para todos los niveles con un enfoque progresivo y seguro.</p>
           <div class="disciplina-niveles">
-            <span class="nivel-tag">Infantil 1</span>
-            <span class="nivel-tag">Infantil 2</span>
+            <span class="nivel-tag">Infantil</span>
             <span class="nivel-tag">Joven</span>
             <span class="nivel-tag">Adulto</span>
           </div>
@@ -209,7 +284,29 @@
         </table>
       </div>
     </section>
-  
+    <section class="inscripcion" id="inscripcion">
+      <div class="inscripcion-bg"></div>
+      <div class="inscripcion-content">
+        <div class="inscripcion-texto">
+          <span class="section-tag">Únete al club</span>
+          <h2 class="inscripcion-titulo">EMPIEZA<br><span>HOY</span></h2>
+          <p class="inscripcion-desc">Da el primer paso. Sin experiencia previa, sin excusas. En Cachorros Boxing Club entrenamos a personas de todos los niveles, desde niños hasta adultos, con un único objetivo: mejorar cada día.</p>
+          <ul class="inscripcion-beneficios">
+            <li>Boxeo, Kickboxing y Grappling</li>
+            <li>Todos los niveles y edades</li>
+            <li>Entrenadores certificados</li>
+            <li>Primera clase de prueba gratuita</li>
+          </ul>
+          <a href="https://app.cluber.es/legacy/clubes/68a351b99873a282869507/inscripcion" target="_blank" class="inscripcion-btn">
+            Inscríbete ahora
+          </a>
+          <p class="inscripcion-nota">Gestión de inscripciones a través de Cluber</p>
+        </div>
+        <div class="inscripcion-deco">
+          <div class="inscripcion-num">CBC</div>
+        </div>
+      </div>
+    </section>
     <!-- CONTACTO -->
     <section class="contacto" id="contacto">
       <div class="section-header">
