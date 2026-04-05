@@ -6,7 +6,7 @@ content:
   - name: noticias
     label: Noticias y Eventos
     type: collection
-    path: content/noticias
+    path: "content/noticias/index.json"
     filename: "{year}-{month}-{day}-{slug}.md"
 
     fields:
