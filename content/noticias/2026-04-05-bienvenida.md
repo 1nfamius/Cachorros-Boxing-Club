@@ -1,11 +1,10 @@
 ---
-titulo: "Bienvenidos a la nueva web de Cachorros Boxing Club"
-fecha: "2026-04-05"
-tipo: "comunicado"
-resumen: "Estrenamos nueva web con toda la información del club, horarios, disciplinas y tienda oficial."
-imagen: ""
+titulo: Bienvenidos a la nueva web de Cachorros Boxing Club
+fecha: 2026-04-05
+tipo: evento
+resumen: Estrenamos nueva web con toda la información del club, horarios,
+  disciplinas y tienda oficial.
 ---
-
 Desde Cachorros Boxing Club nos complace presentaros nuestra nueva página web, donde encontraréis toda la información actualizada sobre el club.
 
 ## ¿Qué encontrarás en nuestra web?
