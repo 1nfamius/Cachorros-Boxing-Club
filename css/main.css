@@ -273,12 +273,14 @@
       font-size: 0.75rem;
       letter-spacing: 1px;
     }
- 
-    .clase-boxeo { color: var(--blanco); font-weight: 600; }
-    .clase-kick { color: #FF8C00; font-weight: 600; }
-    .clase-grappling { color: #5B9BD5; font-weight: 600; }
-    .clase-funcional { color: #70AD47; font-weight: 600; }
-    .clase-libre { color: var(--gris-claro); }
+    .horas{ font-weight: 900; font-size: 16px; }
+    .clase-boxeo { color: var(--boxeo-color); font-weight: 900; font-size: 16px;}
+    .clase-boxeo-inf { color: var(--boxeo-inf-color); font-weight: 900; font-size: 16px;}
+    .clase-kick-joven { color: var(--kickboxing-joven-color); font-weight: 900; font-size: 16px;}
+    .clase-kick-inf { color: var(--kickboxing-inf-color); font-weight: 900; font-size: 16px;}
+    .clase-kick-senior { color: var(--kickboxing-senior-color); font-weight: 900; font-size: 16px;}
+    .clase-grappling { color: var(--grappling-color); font-weight: 900; font-size: 16px;}
+    .clase-funcional { color: var(--entrenamiento-funcional-color); font-weight: 900; font-size: 16px;}
  
     /* =====================
        CONTACTO

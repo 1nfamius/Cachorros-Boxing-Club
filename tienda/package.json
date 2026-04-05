@@ -1,8 +1,0 @@
-{
-  "name": "tienda-boxeo",
-  "version": "1.0.0",
-  "description": "Tienda Cachorros Boxing Club",
-  "dependencies": {
-    "stripe": "^14.0.0"
-  }
-}

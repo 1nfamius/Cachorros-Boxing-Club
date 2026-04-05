@@ -1,0 +1,47 @@
+media:
+  input: "assets/images/noticias"
+  output: "/assets/images/noticias"
+
+content:
+  - name: "noticias"
+    label: "Noticias y Eventos"
+    type: "collection"
+    path: "content/noticias"
+    view:
+      fields: ["titulo", "fecha", "tipo"]
+    fields:
+      - name: "titulo"
+        label: "Título"
+        type: "string"
+        required: true
+
+      - name: "fecha"
+        label: "Fecha"
+        type: "date"
+        required: true
+
+      - name: "tipo"
+        label: "Tipo"
+        type: "select"
+        required: true
+        options:
+          - value: "noticia"
+            label: "Noticia"
+          - value: "evento"
+            label: "Evento"
+          - value: "resultado"
+            label: "Resultado"
+          - value: "comunicado"
+            label: "Comunicado"
+
+      - name: "imagen"
+        label: "Imagen destacada"
+        type: "image"
+
+      - name: "resumen"
+        label: "Resumen corto"
+        type: "string"
+
+      - name: "body"
+        label: "Contenido"
+        type: "rich-text"

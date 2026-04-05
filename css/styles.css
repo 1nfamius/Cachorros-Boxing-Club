@@ -10,6 +10,14 @@
   --gris-claro: #888888;
   --blanco: #F5F5F0;
   --nav-height: 72px;
+
+  --boxeo-color: #ffff01;
+  --boxeo-inf-color: #01b0f1;
+  --kickboxing-joven-color: #7030a0;
+  --kickboxing-inf-color: #f4960a;
+  --entrenamiento-funcional-color: #888888;
+  --kickboxing-senior-color: #92d14f;
+  --grappling-color: #315498;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

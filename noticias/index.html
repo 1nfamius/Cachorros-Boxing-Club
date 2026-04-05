@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias y Eventos – Cachorros Boxing Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/noticias/css/noticias.css">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="header-logo-box">
+        <img class="nav-logo-foto" src="/img/cachorros-boxing-club.webp" alt="Cachorros Boxing Club"/>
+        <a href="/" class="nav-logo-title">CACHORROS <span>BOXING</span></a>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="/#disciplinas">Disciplinas</a></li>
+          <li><a href="/#horarios">Horarios</a></li>
+          <li><a href="/#contacto">Contacto</a></li>
+          <li><a href="/tienda" class="nav-cta">Tienda</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger-btn" aria-label="Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+    <ul class="nav-mobile" id="nav-mobile">
+      <li><a href="/#disciplinas">Disciplinas</a></li>
+      <li><a href="/#horarios">Horarios</a></li>
+      <li><a href="/#contacto">Contacto</a></li>
+      <li><a href="/tienda" class="nav-cta">Tienda</a></li>
+    </ul>
+  </header>
+
+  <main class="noticias-main">
+
+    <div class="noticias-header">
+      <span class="section-tag">Club</span>
+      <h1 class="section-title">Noticias y Eventos</h1>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="filtros">
+      <button class="filtro-btn active" data-filtro="todos">Todos</button>
+      <button class="filtro-btn" data-filtro="noticia">Noticias</button>
+      <button class="filtro-btn" data-filtro="evento">Eventos</button>
+      <button class="filtro-btn" data-filtro="resultado">Resultados</button>
+      <button class="filtro-btn" data-filtro="comunicado">Comunicados</button>
+    </div>
+
+    <!-- GRID DE NOTICIAS -->
+    <div class="noticias-grid" id="noticias-grid">
+      <div class="loading">Cargando noticias...</div>
+    </div>
+
+    <!-- MODAL DE NOTICIA -->
+    <div class="noticia-overlay" id="noticia-overlay" onclick="closeNoticia()"></div>
+    <div class="noticia-modal" id="noticia-modal">
+      <button class="noticia-close" onclick="closeNoticia()">×</button>
+      <div class="noticia-modal-content" id="noticia-modal-content"></div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span class="footer-logo">CACHORROS <span>BOXING</span> CLUB</span>
+    <p>© 2026 Cachorros Boxing Club · La Muela, Zaragoza</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="/noticias/js/noticias.js"></script>
+  <script src="/js/hamburger.js"></script>
+
+</body>
+</html>

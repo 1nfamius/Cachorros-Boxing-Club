@@ -1,12 +1,10 @@
 // render.js
-// Pinta los productos, el carrito y gestiona el modal de cada producto.
+// Pinta los productos y gestiona el modal. Sin carrito ni pagos.
 
-// Variable que guarda el producto abierto en el modal
 let modalProduct = null;
 let selectedColor = null;
 let selectedTalla = null;
 
-// Mapa de colores para los puntos visuales
 const colorMap = {
   negro: "#111111",
   rojo: "#D85A30",
@@ -25,23 +23,18 @@ function renderProducts() {
 
   container.innerHTML = products.map(p => `
     <div class="product-card" onclick="openModal(${p.id})">
-
       ${p.imagenes.length > 0
         ? `<img class="product-img" src="${p.imagenes[0]}" alt="${p.nombre}" onerror="this.style.display='none'">`
         : `<div class="product-img-placeholder">📦</div>`
       }
-
       <div class="product-info">
         <p class="product-name">${p.nombre}</p>
         <p class="product-price">${p.precio.toFixed(2)} €</p>
-
-        <!-- Puntos de colores disponibles -->
         <div class="product-colores">
           ${p.colores.map(c => `
-            <div class="color-dot" style="background: ${colorMap[c] || '#ccc'}; ${c === 'blanco' ? 'border: 1px solid #ccc;' : ''}"></div>
+            <div class="color-dot" style="background: ${colorMap[c] || '#ccc'}; ${c === 'blanco' ? 'border: 1px solid rgba(255,255,255,0.3);' : ''}"></div>
           `).join("")}
         </div>
-
         <button class="add-btn">Ver producto</button>
       </div>
     </div>
@@ -60,9 +53,8 @@ function openModal(id) {
   document.getElementById("modal-name").textContent = modalProduct.nombre;
   document.getElementById("modal-desc").textContent = modalProduct.descripcion;
   document.getElementById("modal-price").textContent = modalProduct.precio.toFixed(2) + " €";
-  document.getElementById("modal-error").textContent = "";
 
-  // Imágenes
+  // Imágenes con lightbox
   document.getElementById("modal-imgs").innerHTML = modalProduct.imagenes.map(img => `
     <img src="${img}" alt="${modalProduct.nombre}"
       onclick="openLightbox('${img}')"
@@ -78,7 +70,7 @@ function openModal(id) {
     colorOptions.innerHTML = modalProduct.colores.map(c => `
       <button
         class="color-btn"
-        style="background: ${colorMap[c] || '#ccc'}; ${c === 'blanco' ? 'border: 2px solid #ccc;' : ''}"
+        style="background: ${colorMap[c] || '#ccc'}; ${c === 'blanco' ? 'border: 2px solid rgba(255,255,255,0.3);' : ''}"
         title="${c}"
         onclick="selectColor('${c}', this)"
       ></button>
@@ -98,7 +90,6 @@ function openModal(id) {
     `).join("");
   } else {
     tallaSelector.style.display = "none";
-    selectedTalla = "unica"; // Sin talla, se marca como única
   }
 
   document.getElementById("modal-overlay").classList.add("open");
@@ -123,56 +114,8 @@ function selectTalla(talla, btn) {
   btn.classList.add("selected");
 }
 
-// Valida que se haya elegido color y talla antes de añadir al carrito
-function addFromModal() {
-  const error = document.getElementById("modal-error");
-
-  if (modalProduct.colores.length > 0 && !selectedColor) {
-    error.textContent = "Elige un color antes de continuar.";
-    return;
-  }
-
-  if (modalProduct.tallas.length > 0 && !selectedTalla) {
-    error.textContent = "Elige una talla antes de continuar.";
-    return;
-  }
-
-  addToCart(modalProduct, selectedTalla, selectedColor);
-  closeModal();
-  toggleCart();
-}
-
 /* =====================
-   RENDER CARRITO
-   ===================== */
-
-function renderCart() {
-  const container = document.getElementById("cart-items");
-
-  if (cart.length === 0) {
-    container.innerHTML = '<p class="cart-empty">El carrito está vacío</p>';
-    return;
-  }
-
-  container.innerHTML = cart.map(i => `
-    <div class="cart-item">
-      <img class="cart-item-img" src="${i.imagen}" alt="${i.nombre}" onerror="this.style.background='#f0f0f0'">
-      <div class="cart-item-info">
-        <p class="cart-item-name">${i.nombre}</p>
-        <p class="cart-item-variant">${i.talla !== "unica" ? i.talla + " · " : ""}${i.color || ""}</p>
-        <p class="cart-item-price">${i.precio.toFixed(2)} €</p>
-        <div class="cart-item-qty">
-          <button class="qty-btn" onclick="removeFromCart('${i.key}')">−</button>
-          <span class="qty-num">${i.qty}</span>
-          <button class="qty-btn" onclick="addToCart({id:${i.id}, nombre:'${i.nombre}', precio:${i.precio}, imagenes:['${i.imagen}']}, '${i.talla}', '${i.color}')">+</button>
-        </div>
-      </div>
-    </div>
-  `).join("");
-}
-
-/* =====================
-   LIGHTBOX DE IMAGEN
+   LIGHTBOX
    ===================== */
 
 function openLightbox(src) {

@@ -10,54 +10,47 @@
   <link rel="stylesheet" href="/tienda/css/tienda.css">
 </head>
 <body>
+
   <header>
-  <nav>
-    <div class="header-logo-box">
-      <img class="nav-logo-foto" src="/img/cachorros-boxing-club.webp" alt="Cachorros Boxing Club"/>
-      <a href="/" class="nav-logo-title">CACHORROS <span>BOXING</span></a>
-    </div>
-
-    <div class="nav-tienda">
-      <!-- Nav escritorio -->
-      <ul class="nav-links">
-        <li><a href="/#disciplinas">Disciplinas</a></li>
-        <li><a href="/#horarios">Horarios</a></li>
-        <li><a href="/#contacto">Contacto</a></li>
-      </ul>
-
-      <!-- Siempre visible, en escritorio y móvil -->
-      <div class="nav-right">
-        <button class="cart-btn" onclick="toggleCart()">
-          Carrito
-          <span class="cart-count" id="cart-count">0</span>
-        </button>
-        <button class="hamburger" id="hamburger-btn" aria-label="Menú">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+    <nav>
+      <div class="header-logo-box">
+        <img class="nav-logo-foto" src="/img/cachorros-boxing-club.webp" alt="Cachorros Boxing Club"/>
+        <a href="/" class="nav-logo-title">CACHORROS <span>BOXING</span></a>
       </div>
-    </div>
+      <div class="nav-tienda">
+        <ul class="nav-links">
+          <li><a href="/#disciplinas">Disciplinas</a></li>
+          <li><a href="/#horarios">Horarios</a></li>
+          <li><a href="/#contacto">Contacto</a></li>
+          <li><a href="/noticias">Noticias</a></li>
+        </ul>
+        <div class="nav-right">
+          <button class="hamburger" id="hamburger-btn" aria-label="Menú">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
 
-  </nav>
- 
-  <!-- Menú móvil desplegable -->
-  <ul class="nav-mobile" id="nav-mobile">
-    <li><a href="/#disciplinas">Disciplinas</a></li>
-    <li><a href="/#horarios">Horarios</a></li>
-    <li><a href="/#contacto">Contacto</a></li>
-  </ul>
-</header>
+    <ul class="nav-mobile" id="nav-mobile">
+      <li><a href="/#disciplinas">Disciplinas</a></li>
+      <li><a href="/#horarios">Horarios</a></li>
+      <li><a href="/#contacto">Contacto</a></li>
+      <li><a href="/noticias">Noticias</a></li>
+    </ul>
+  </header>
 
   <main class="tienda-main">
 
-    <!-- CABECERA TIENDA -->
     <div class="tienda-header">
       <span class="section-tag">Equipamiento oficial</span>
       <h1 class="section-title">Tienda</h1>
     </div>
 
-    <!-- GRID DE PRODUCTOS -->
+    <p class="tienda-aviso">Disponible en el gimnasio · <a href="tel:+34601563460">601 56 34 60</a></p>
+
     <div class="products" id="products"></div>
 
   </main>
@@ -71,53 +64,29 @@
       <h2 id="modal-name"></h2>
       <p id="modal-desc"></p>
       <p class="modal-price" id="modal-price"></p>
-
       <div class="selector" id="color-selector">
         <p class="selector-label">Color</p>
         <div class="selector-options" id="color-options"></div>
       </div>
-
       <div class="selector" id="talla-selector">
         <p class="selector-label">Talla</p>
         <div class="selector-options" id="talla-options"></div>
       </div>
-
-      <button class="modal-add-btn" onclick="addFromModal()">Añadir al carrito</button>
-      <p class="modal-error" id="modal-error"></p>
-    </div>
-  </div>
-
-  <!-- OVERLAY CARRITO -->
-  <div class="cart-overlay" id="overlay" onclick="toggleCart()"></div>
-
-  <!-- PANEL CARRITO -->
-  <div class="cart-panel" id="cart-panel">
-    <div class="cart-header">
-      <h2>Tu carrito</h2>
-      <button class="close-btn" onclick="toggleCart()">×</button>
-    </div>
-    <div class="cart-items" id="cart-items">
-      <p class="cart-empty">El carrito está vacío</p>
-    </div>
-    <div class="cart-footer">
-      <div class="cart-total">
-        <span>Total</span>
-        <span id="cart-total">0.00 €</span>
+      <!-- Aviso de compra en gym -->
+      <div class="modal-aviso">
+        Disponible en el gimnasio · <a href="tel:+34601563460">601 56 34 60</a>
       </div>
-      <button class="checkout-btn" onclick="checkout()">Finalizar compra</button>
-      <button class="clear-btn" onclick="clearCart()">Vaciar carrito</button>
     </div>
   </div>
 
-  <!-- FOOTER (igual que el main) -->
   <footer>
     <span class="footer-logo">CACHORROS <span>BOXING</span> CLUB</span>
     <p>© 2026 Cachorros Boxing Club · La Muela, Zaragoza</p>
   </footer>
 
   <script src="/tienda/js/products.js"></script>
-  <script src="/tienda/js/cart.js"></script>
   <script src="/tienda/js/render.js"></script>
   <script src="/js/hamburger.js"></script>
+
 </body>
 </html>
