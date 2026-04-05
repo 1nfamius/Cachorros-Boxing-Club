@@ -25,15 +25,16 @@ content:
         type: select
         required: true
         options:
-          - label: Noticia
-            value: noticia
-          - label: Evento
-            value: evento
-          - label: Resultado
-            value: resultado
-          - label: Comunicado
-            value: comunicado
-
+          values:
+            - name: noticia
+              label: Noticia
+            - name: evento
+              label: Evento
+            - name: resultado
+              label: Resultado
+            - name: comunicado
+              label: Comunicado
+              
       - name: imagen
         label: Imagen destacada
         type: image
