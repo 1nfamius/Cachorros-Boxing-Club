@@ -1,12 +1,12 @@
 media:
-  input: /assets/images/noticias
-  output: /assets/images/noticias
+  input: assets/images/noticias
+  output: assets/images/noticias
 
 content:
   - name: noticias
     label: Noticias y Eventos
     type: collection
-    path: "content/noticias/index.json"
+    path: content/noticias/index.json
     filename: "{year}-{month}-{day}-{slug}.md"
 
     fields:
