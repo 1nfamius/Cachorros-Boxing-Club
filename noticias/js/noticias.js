@@ -30,7 +30,7 @@ async function cargarNoticias() {
     const archivos = await res.json();
 
     const promesas = archivos.map(archivo => cargarNoticia(archivo));
-    todasLasNoticias = await Promise.all(promesas);
+    todasLasNoticias = (await Promise.all(promesas)).filter(n => n !== null);
 
     // Ordena por fecha, más reciente primero
     todasLasNoticias.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
@@ -50,7 +50,7 @@ async function cargarNoticia(archivo) {
 
 // Parsea el frontmatter YAML + contenido markdown
 function parsearMarkdown(texto, archivo) {
-  const match = texto.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  const match = texto.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
   if (!match) return null;
 
   const frontmatter = match[1];
@@ -77,8 +77,8 @@ function renderNoticias(noticias) {
   const grid = document.getElementById("noticias-grid");
 
   const filtradas = filtroActivo === "todos"
-    ? noticias
-    : noticias.filter(n => n.tipo === filtroActivo);
+    ? noticias.filter(n => n !== null)
+    : noticias.filter(n => n !== null && n.tipo === filtroActivo);
 
   if (filtradas.length === 0) {
     grid.innerHTML = '<p class="sin-noticias">No hay entradas en esta categoría</p>';

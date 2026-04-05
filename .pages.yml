@@ -25,15 +25,16 @@ content:
         type: select
         required: true
         options:
-          - label: Noticia
-            value: noticia
-          - label: Evento
-            value: evento
-          - label: Resultado
-            value: resultado
-          - label: Comunicado
-            value: comunicado
-
+          values:
+            - name: noticia
+              label: Noticia
+            - name: evento
+              label: Evento
+            - name: resultado
+              label: Resultado
+            - name: comunicado
+              label: Comunicado
+              
       - name: imagen
         label: Imagen destacada
         type: image
@@ -45,3 +46,12 @@ content:
       - name: body
         label: Contenido
         type: rich-text
+
+  - name: "noticias-index"
+    label: "Índice de noticias"
+    type: "file"
+    path: "content/noticias/index.json"
+    fields:
+      - name: "body"
+        label: "Lista"
+        type: "code"
