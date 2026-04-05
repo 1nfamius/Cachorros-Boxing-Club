@@ -8,7 +8,7 @@ let filtroActivo = "todos";
 // Lista de noticias disponibles
 // Pages CMS guarda cada noticia como un .md en /content/noticias/
 // Este archivo se actualiza automáticamente con cada nueva noticia
-const NOTICIAS_INDEX = "/content/noticias-index";
+const NOTICIAS_INDEX = "/content/noticias/index.json";
 
 /* =====================
    INICIALIZACIÓN

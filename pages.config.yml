@@ -1,51 +1,48 @@
 media:
-  input: "assets/images/noticias"
-  output: "/assets/images/noticias"
+  input: assets/images/noticias
+  output: /assets/images/noticias
 
 content:
-  - name: "noticias"
-    label: "Noticias y Eventos"
-    type: "collection"
-    path: "content/noticias"
-    slug: "{{titulo}}"
+  items:
+    - name: noticias
+      label: Noticias y Eventos
+      type: collection
+      folder: content/noticias
+      create: true
 
-    view:
-      fields: ["titulo", "fecha", "tipo"]
+      fields:
+        - name: titulo
+          label: Título
+          type: string
+          required: true
 
-    fields:
-      - name: "titulo"
-        label: "Título"
-        type: "string"
-        required: true
+        - name: fecha
+          label: Fecha
+          type: date
+          required: true
 
-      - name: "fecha"
-        label: "Fecha"
-        type: "date"
-        required: true
+        - name: tipo
+          label: Tipo
+          type: select
+          required: true
+          options:
+            - label: Noticia
+              value: noticia
+            - label: Evento
+              value: evento
+            - label: Resultado
+              value: resultado
+            - label: Comunicado
+              value: comunicado
 
-      - name: "tipo"
-        label: "Tipo"
-        type: "select"
-        required: true
-        options:
-          - value: "noticia"
-            label: "Noticia"
-          - value: "evento"
-            label: "Evento"
-          - value: "resultado"
-            label: "Resultado"
-          - value: "comunicado"
-            label: "Comunicado"
+        - name: imagen
+          label: Imagen destacada
+          type: image
 
-      - name: "imagen"
-        label: "Imagen destacada"
-        type: "image"
-        required: true
+        - name: resumen
+          label: Resumen corto
+          type: text
 
-      - name: "resumen"
-        label: "Resumen corto"
-        type: "text"
-
-      - name: "body"
-        label: "Contenido"
-        type: "rich-text"
+        - name: body
+          label: Contenido
+          type: rich-text
