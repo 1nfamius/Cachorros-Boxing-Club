@@ -277,7 +277,7 @@
     "nombre": "Guante Boxeo Piel ROCKSTEADY",
     "precio": 56.00,
     "categoria": "guantes",
-    "destacado": false,
+    "destacado": true,
     "tallas": ["12 Oz", "14 Oz","16 Oz"],
     "descripcion": "El mejor Guante de Boxeo para iniciación. Fabricado en piel, e ideal para entrenamiento. Relleno de molde.",
     "colores": [
@@ -435,7 +435,7 @@
     "nombre": "Guante Boxeo P.U. DICKIES",
     "precio": 41.00,
     "categoria": "guantes",
-    "destacado": false,
+    "destacado": true,
     "tallas": ["10 Oz", "12 Oz","14 Oz"],
     "descripcion": "Guante fabricado en PU. Relleno de molde. Gran variedad de onzas y colores.",
     "colores": [
