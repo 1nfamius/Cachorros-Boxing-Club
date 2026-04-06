@@ -159,7 +159,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
-      background: rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.059);
     }
  
     .disciplina-card {
@@ -230,7 +230,7 @@
  
     .horarios {
       padding: 6rem 4rem;
-      background: var(--negro);
+      background: var(--gris-oscuro);
     }
  
     .horarios-table-wrap {
