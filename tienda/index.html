@@ -39,7 +39,6 @@
         </div>
       </div>
     </nav>
-
     <ul class="nav-mobile" id="nav-mobile">
       <li><a href="/#disciplinas">Disciplinas</a></li>
       <li><a href="/#horarios">Horarios</a></li>
@@ -58,6 +57,43 @@
 
     <p class="tienda-aviso">Disponible en el gimnasio · <a href="tel:+34601563460">601 56 34 60</a></p>
 
+    <!-- CONTROLES: FILTROS + ORDEN -->
+    <div class="tienda-controles">
+
+      <!-- FILTROS POR CATEGORÍA -->
+      <div class="filtros-categoria">
+        <button class="filtro-btn active" data-cat="todos">Todos</button>
+        <button class="filtro-btn" data-cat="guantes">Guantes</button>
+        <button class="filtro-btn" data-cat="bucales">Bucales</button>
+        <button class="filtro-btn" data-cat="protecciones">Protecciones</button>
+        <button class="filtro-btn" data-cat="ninos">Niños</button>
+        <button class="filtro-btn" data-cat="vendas">Vendas</button>
+        <button class="filtro-btn" data-cat="camisetas">Camisetas</button>
+        <button class="filtro-btn" data-cat="sudaderas">Sudaderas</button>
+      </div>
+
+      <!-- ORDEN -->
+      <div class="orden-wrap">
+        <select class="orden-select" id="orden-select">
+          <option value="destacado">Destacados primero</option>
+          <option value="precio-asc">Precio: menor a mayor</option>
+          <option value="precio-desc">Precio: mayor a menor</option>
+          <option value="nombre">Nombre A-Z</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- DESTACADOS -->
+    <div class="destacados-wrap" id="destacados-wrap">
+      <div class="destacados-label">
+        <span class="section-tag">Más vendidos</span>
+      </div>
+      <div class="products destacados-grid" id="products-destacados"></div>
+      <div class="destacados-sep"></div>
+    </div>
+
+    <!-- TODOS LOS PRODUCTOS -->
     <div class="products" id="products"></div>
 
   </main>
@@ -79,7 +115,6 @@
         <p class="selector-label">Talla</p>
         <div class="selector-options" id="talla-options"></div>
       </div>
-      <!-- Aviso de compra en gym -->
       <div class="modal-aviso">
         Disponible en el gimnasio · <a href="tel:+34601563460">601 56 34 60</a>
       </div>

@@ -12,13 +12,13 @@
   --blanco: #F5F5F0;
   --nav-height: 72px;
 
-  --boxeo-color: #ffff01;
-  --boxeo-inf-color: #01b0f1;
+  --boxeo-color: #e0ca00;
+  --boxeo-inf-color: #019dd6;
   --kickboxing-joven-color: #7030a0;
-  --kickboxing-inf-color: #f4960a;
-  --entrenamiento-funcional-color: #888888;
-  --kickboxing-senior-color: #92d14f;
-  --grappling-color: #315498;
+  --kickboxing-inf-color: #dd890a;
+  --entrenamiento-funcional-color: #7c7c7c;
+  --kickboxing-senior-color: #84bd48;
+  --grappling-color: #33579e;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

@@ -1,56 +1,1006 @@
 [
   {
     "id": 1,
-    "nombre": "Guantes de boxeo",
-    "precio": 49.99,
-    "imagenes": ["/tienda/img/producto/guantes-1.webp", "/tienda/img/producto/guantes-2.webp"],
-    "tallas": ["S", "M", "L", "XL"],
-    "colores": ["negro", "rojo", "azul"],
-    "descripcion": "Guantes profesionales para entrenamiento y combate."
+    "nombre": "Guante Boxeo Competición AMATEUR",
+    "precio": 62.00,
+    "categoria": "guantes",
+    "destacado": true,
+    "tallas": ["10 Oz", "12 Oz"],
+    "descripcion": "Guante amateur de competición. Fabricado en piel. Cierre de velcro.",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/01/unnamed.jpg"
+        ]
+      },
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/01/aMATEUR-AZUL-510x600competi1.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": 2,
-    "nombre": "Camiseta entrenamiento",
-    "precio": 24.99,
-    "imagenes": ["/tienda/img/producto/camiseta-1.webp", "/tienda/img/producto/camiseta-2.webp"],
-    "tallas": ["XS", "S", "M", "L", "XL", "XXL"],
-    "colores": ["negro", "blanco", "gris"],
-    "descripcion": "Camiseta técnica transpirable para entrenamientos intensos."
+    "nombre": "Guante Boxeo Piel GEL STARDUST 2.0",
+    "precio": 71.90,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz", "14 Oz","16 Oz", "18 Oz"],
+    "descripcion": "Fabricado con piel de vaca para mayor durabilidad. Cierre de velcro ancho para mayor seguridad. Su nueva composición del relleno three layer con GEL, le proporciona mayor durabilidad y versatilidad. Suave forro interior con sublimación.",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/Stardust-Rojo-web.webp"
+        ]
+      },
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/Stardust-negro-web.webp"
+        ]
+      },
+      {
+        "nombre": "blanco",
+        "hex": "#d8dbd6",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/Stardust-blanco-web.webp"
+        ]
+      },
+      {
+        "nombre": "rosa",
+        "hex": "#bf7096",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/03/Stardust-Rosa-web3.webp"
+        ]
+      },
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/Stardust-azul.bl-web.webp"
+        ]
+      },
+      {
+        "nombre": "amarillo",
+        "hex": "#fedb01",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/Stardust-Allo-web.webp"
+        ]
+      },
+      {
+        "nombre": "plata",
+        "hex": "#c8c3ba",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/04/Stardust-Plata-web.webp"
+        ]
+      }
+    ]
   },
   {
     "id": 3,
-    "nombre": "Vendas para manos",
-    "precio": 12.99,
-    "imagenes": ["/tienda/img/producto/vendas-1.webp", "/tienda/img/producto/vendas-2.webp"],
-    "tallas": [],
-    "colores": ["negro", "rojo", "azul", "blanco"],
-    "descripcion": "Vendas elásticas de 4.5m para protección de manos y muñecas."
+    "nombre": "Guante Boxeo Piel RAW",
+    "precio": 78.50,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz", "14 Oz","16 Oz"],
+    "descripcion": "Fabricado en piel de vaca con efecto envejecido. Relleno de molde de látex flexible, que proporciona una gran absorción y protección de los golpes. Entrenamiento, sparring. El patrón de color de cada guante es único y puede variar con respecto a la imágenes. Consúltanos para más información.",
+    "colores": [
+      {
+        "nombre": "ASH to ASH",
+        "hex": "#9ca29b",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2024/05/Guante-Ash-to-Ash-web3.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2024/05/Guante-Ash-to-Ash-web1.webp"
+        ]
+      },
+      {
+        "nombre": "VINTAGE TROUBLE",
+        "hex": "#83634c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2024/05/Guante-Vintage-Trouble-web2.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2024/05/Guante-Vintage-Trouble-web1.webp"
+        ]
+      }
+    ]
   },
   {
     "id": 4,
-    "nombre": "Saco de boxeo",
-    "precio": 89.99,
-    "imagenes": ["/tienda/img/producto/saco-1.webp", "/tienda/img/producto/saco-2.webp"],
-    "tallas": [],
-    "colores": ["negro", "rojo"],
-    "descripcion": "Saco de entrenamiento relleno de alta densidad."
+    "nombre": "Guante Boxeo Piel GEL STARDUST 2.0",
+    "precio": 71.90,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz", "14 Oz","16 Oz", "18 Oz"],
+    "descripcion": "Fabricado con piel de vaca para mayor durabilidad. Cierre de velcro ancho para mayor seguridad. Su nueva composición del relleno three layer con GEL, le proporciona mayor durabilidad y versatilidad. Suave forro interior con sublimación.",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/Ultravox-rojo.webp"
+        ]
+      },
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/Ultravox-negro.webp"
+        ]
+      },
+      {
+        "nombre": "blanco",
+        "hex": "#d8dbd6",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/Ultravox-blanco.webp"
+        ]
+      },
+      {
+        "nombre": "naranja",
+        "hex": "#e75a2e",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/Ultravox-Naranja-web.webp"
+        ]
+      },
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/ultravox-az.webp"
+        ]
+      },
+      {
+        "nombre": "lima",
+        "hex": "#b6cf45",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/Ultravox-lima.webp"
+        ]
+      },
+      {
+        "nombre": "plata",
+        "hex": "#c8c3ba",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/ultravox-plata-web.webp"
+        ]
+      }
+    ]
   },
   {
     "id": 5,
-    "nombre": "Protector bucal",
-    "precio": 9.99,
-    "imagenes": ["/tienda/img/producto/protector-1.webp"],
-    "tallas": [],
-    "colores": ["negro", "transparente"],
-    "descripcion": "Protector bucal termomoldeable para máxima protección."
+    "nombre": "Guante Boxeo Piel BLOODY SUNDAY",
+    "precio": 74.00,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz", "14 Oz","16 Oz"],
+    "descripcion": "Fabricado en piel de vaca con aspecto brillo. Doble velcro para mejor agarre de la muñeca. Relleno de Molde fabricado a máquina de Espuma flexible (MDI), con gran absorción y resistencia.",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2024/05/Guante-Bloody-web3.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2024/05/Guante-Bloody-web1.webp"
+        ]
   },
   {
     "id": 6,
-    "nombre": "Short de boxeo",
-    "precio": 34.99,
-    "imagenes": ["/tienda/img/producto/short-1.webp", "/tienda/img/producto/short-2.webp"],
-    "tallas": ["S", "M", "L", "XL"],
-    "colores": ["negro", "rojo", "azul"],
-    "descripcion": "Short oficial de competición con tejido satinado."
+    "nombre": "Guante Boxeo Piel BLACKOUT",
+    "precio": 74.00,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz", "14 Oz","16 Oz"],
+    "descripcion": "Fabricado en piel de vaca, diseño en Negro mate/brillo. Doble velcro para mejor agarre de la muñeca. Relleno de Molde fabricado a máquina de Espuma flexible (MDI), con gran absorción y resistencia.",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2020/01/Blackout-1-web.gif"
+        ]
+  },
+  {
+    "id": 7,
+    "nombre": "Guante Boxeo Piel Velcro BOOGUIE",
+    "precio": 103.00,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz", "14 Oz","16 Oz"],
+    "descripcion": "CLASH LINE Fabricado en piel de alta calidad. Cierre de velcro y relleno three layer para mayor durabilidad. Máxima comodidad",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Booguie-Gra-web1.webp"
+        ]
+      },
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Booguie-Az-web1.webp"
+        ]
+      },
+      {
+        "nombre": "rosa",
+        "hex": "#bf7096",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Booguie-Ros-web1.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "nombre": "Guante Boxeo Piel Cocodrilo DINO",
+    "precio": 89.00,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz", "14 Oz","16 Oz"],
+    "descripcion": "Guante de alta calidad, hecho en Genuine Leather.  Velcro largo para mejor sujeción de la muñeca.  Relleno three layer que proporciona mayor durabilidad y comodidad.  El patrón del diseño de cada guante es único y puede variar respecto a las imágenes. Consúltanos para más información.",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2020/06/dino-2-web-510x434.gif"
+        ]
+  },
+  {
+    "id": 9,
+    "nombre": "Guante Boxeo Piel PUBLIC ENEMY",
+    "precio": 79.00,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz", "14 Oz","16 Oz"],
+    "descripcion": "CLASH LINE Fabricado en piel de alta calidad. Cierre de velcro y relleno three layer para mayor durabilidad. Máxima comodidad",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/01/Public-Enemy-Rojo-web.png"
+        ]
+      },
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/01/Public-Enemy-Negro-web-ok.png"
+        ]
+      },
+      {
+        "nombre": "blanco",
+        "hex": "#d8dbd6",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2023/01/Public-Enemy-Blanco-web.png"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "nombre": "Guante Boxeo Piel ROCKSTEADY",
+    "precio": 56.00,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz", "14 Oz","16 Oz"],
+    "descripcion": "El mejor Guante de Boxeo para iniciación. Fabricado en piel, e ideal para entrenamiento. Relleno de molde.",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/rock-steady-rj.jpg"
+        ]
+      },
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/rocksteady-az1.gif"
+        ]
+      },
+      {
+        "nombre": "rosa",
+        "hex": "#bf7096",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/Rocksteady-rosa-510x434.gif"
+        ]
+      },
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/rock-steady-ng.jpg"
+        ]
+      },
+      {
+        "nombre": "morado",
+        "hex": "#6346ac",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/Morado-2-web-510x600.gif"
+        ]
+      },
+      {
+        "nombre": "lima",
+        "hex": "#b6cf45",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/Rocksteady-lima-1-web-510x434.png"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "nombre": "Guante Boxeo PROFESIONAL",
+    "precio": 66.00,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["8 Oz", "10 Oz"],
+    "descripcion": "Guante de combate profesional. Piel de máxima calidad, con máxima absorción de impacto. Pulgar unido y ajuste profesional en cuerdas. Interior cómodo de forro con sublimación.",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2020/11/Guante-Cuerda-Rebel-Rj-Pl-2-web-510x434.webp"
+        ]
+      },
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2020/11/Guante-Cuerda-Rebel-Ng-Pl-2-web-ok.png"
+        ]
+      },
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/01/plata-azul-web.gif"
+        ]
+      },
+      {
+        "nombre": "plata",
+        "hex": "#c8c3ba",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/01/plata-rojo-web.gif"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "nombre": "Guante Boxeo Piel Cuerda TOMMY GUN",
+    "precio": 146.00,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz", "16 Oz"],
+    "descripcion": "Fabricado en piel de vaca de alta calidad. Ajuste de cuerdas para mejorar la sujeción y velcro para esconderlas. Cierre de la mano perfecto gracias a su relleno three layer.",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Tommy-Gun-web1.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Tommy-Gun-web3.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Tommy-Gun-web2.webp"
+        ]
+  },
+  {
+    "id": 13,
+    "nombre": "Guante Boxeo Piel Cuerda BOWIE",
+    "precio": 123.00,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz", "14 Oz","16 Oz"],
+    "descripcion": "Fabricado en piel de vaca de alta calidad. Cierre de cuerdas para el mejor ajuste de la muñeca. Relleno multicapa para mayor durabilidad y sensación de golpeo. ¡Puedes llevarte una mano de cada color!*  *Disponible para guantes en 14 y 16 oz. Mezcla de color aleatoria. Solo hasta fin de existencias.",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Bowie-Gra-web1.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Bowie-Gra-web2.webp"
+        ]
+      },
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Bowie-Az-web1.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Bowie-Az-web2.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "nombre": "Guante Boxeo Piel Cuerda REBEL",
+    "precio": 69.00,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz", "14 Oz","16 Oz"],
+    "descripcion": "Ideal para trabajos de Saco, Manoplas y Sparring.  Cierre de cuerda para una mejor sujeción.  Fabricado en piel de máxima calidad y relleno three layer.",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2020/11/Guante-Cuerda-Rebel-Rj-Pl-2-web-510x434.webp"
+        ]
+      },
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2020/11/Guante-Cuerda-Rebel-Ng-Pl-2-web-ok.png"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "nombre": "Guante Boxeo P.U. DICKIES",
+    "precio": 41.00,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["10 Oz", "12 Oz","14 Oz"],
+    "descripcion": "Guante fabricado en PU. Relleno de molde. Gran variedad de onzas y colores.",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/dickies-rojo-plata-web-510x434.gif"
+        ]
+      },
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/Dickies-Negro-Plata-web1.webp"
+        ]
+      },
+      {
+        "nombre": "blanco",
+        "hex": "#d8dbd6",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2024/09/Dickies-blanco-azul-web.webp"
+        ]
+      },
+      {
+        "nombre": "naranja",
+        "hex": "#e75a2e",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/dickies-ng-510x434.gif"
+        ]
+      },
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/Dickies-Azul-Plata-web-1.webp"
+        ]
+      },
+      {
+        "nombre": "verde",
+        "hex": "#039521",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2024/09/Dickies-verde-negro-web.webp"
+        ]
+      },
+      {
+        "nombre": "plata",
+        "hex": "#c8c3ba",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/dickies-Pl-510x434.gif"
+        ]
+      },
+      {
+        "nombre": "dorado",
+        "hex": "#ddb35a",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/dickies-negro-dorado-web.gif"
+        ]
+      },
+      {
+        "nombre": "rosa",
+        "hex": "#bf7096",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/Dickies-rosa-negro-510x434.gif"
+        ]
+      },
+      {
+        "nombre": "rojo/plata",
+        "hex": ["#ea363f", "#c8c3ba"],
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2024/09/Dickies-Plata-Rojo-web.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "nombre": "Guante Boxeo SMALL FACES",
+    "precio": 41.00,
+    "categoria": "ninos",
+    "destacado": false,
+    "tallas": ["6 Oz", "8 Oz"],
+    "descripcion": "Guante fabricado en PU. Ideal para niñ@s. Relleno de molde. Gran variedad de colores.",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/dickies-rojo-plata-web-510x434.gif"
+        ]
+      },
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/Dickies-Negro-Plata-web1.webp"
+        ]
+      },
+      {
+        "nombre": "blanco",
+        "hex": "#d8dbd6",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2024/09/Dickies-blanco-azul-web.webp"
+        ]
+      },
+      {
+        "nombre": "naranja",
+        "hex": "#e75a2e",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/small-faces-negro1.jpg"
+        ]
+      },
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/Dickies-Azul-Plata-web-1.webp"
+        ]
+      },
+      {
+        "nombre": "plata",
+        "hex": "#c8c3ba",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/dickies-Pl-510x434.gif"
+        ]
+      },
+      {
+        "nombre": "dorado",
+        "hex": "#ddb35a",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/dickies-negro-dorado-web.gif"
+        ]
+      },
+      {
+        "nombre": "rosa",
+        "hex": "#bf7096",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/12/Dickies-rosa-negro-510x434.gif"
+        ]
+      },
+      {
+        "nombre": "rojo/plata",
+        "hex": ["#ea363f", "#c8c3ba"],
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2024/09/Dickies-Plata-Rojo-web.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "nombre": "Guante Boxeo P.U. BARMY ARMY",
+    "precio": 43.50,
+    "categoria": "guantes",
+    "destacado": false,
+    "tallas": ["12 Oz"],
+    "descripcion": "Fabricado en PU de alta calidad. Relleno de molde de látex de alta densidad. Muy cómodo.",
+    "colores": [
+      {
+        "nombre": "verde",
+        "hex": "#646543",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2021/10/Guante-PU-Barmy-Verde-1web-510x434.png"
+        ]
+      },
+      {
+        "nombre": "gris",
+        "hex": "#6f6e69",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2021/10/Guante-PU-Barmy-NEGRO-2web-510x434.png"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "nombre": "Casco Boxeo Barra Profesional AMY",
+    "precio": 87.00,
+    "categoria": "protecciones",
+    "destacado": false,
+    "tallas": ["S", "M","L", "XL"],
+    "descripcion": "Casco de Boxeo fabricado en piel. Gran visibilidad. Interior con forro de ante para mayor absorción del sudor. Cierre trasero de velcro. *El color del forro interior puede variar respecto a las imágenes. Consúltanos para más información",
+    "colores": [
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2018/09/Amy-negro-3-Ok-510x600.gif",
+          "https://www.moluboxing.com/wp-content/uploads/2022/04/talla-cascos-1-510x434.webp"
+        ]
+      },
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2018/09/Casco-Amy-Rojo-OK-1-510x600.gif",
+          "https://www.moluboxing.com/wp-content/uploads/2018/09/Casco-Amy-Rojo-OK-2-510x600.gif"
+        ]
+      },
+      {
+        "nombre": "blanco",
+        "hex": "#d8dbd6",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2018/09/Casco-Amy-Blanco-1-web-510x434.png",
+          "https://www.moluboxing.com/wp-content/uploads/2018/09/Casco-Amy-Blanco-2-web-510x434.png"
+        ]
+      },
+      {
+        "nombre": "rosa",
+        "hex": "#bf7096",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/04/Casco-Amy-Rosa-web1.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2025/04/Casco-Amy-Rosa-web2.webp"
+        ]
+      },
+      {
+        "nombre": "amarillo",
+        "hex": "#fedb01",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2018/09/Casco-Amy-Neo%CC%81n-1-web-510x434.png",
+          "https://www.moluboxing.com/wp-content/uploads/2018/09/Casco-Amy-Neo%CC%81n-2-web-510x434.png"
+        ]
+      },
+      {
+        "nombre": "plata",
+        "hex": "#c8c3ba",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2018/09/Amy-Plata-1-510x600.gif",
+          "https://www.moluboxing.com/wp-content/uploads/2018/09/Amy-Plata-4-510x600.gif"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "nombre": "Casco Boxeo AMATEUR Competición",
+    "precio": 57.00,
+    "categoria": "protecciones",
+    "destacado": false,
+    "tallas": ["M","L"],
+    "descripcion": "Casco abierto de competición amateur. Fabricado en piel de vaca. Cierre trasero de doble velcro.",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/01/Casco-Amateur-RJ-1-web.webp"
+        ]
+      },
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/01/Casco-Amateur-AZ-1-web.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "nombre": "Casco Boxeo Prof. Pómulos REFUGEE 2.0",
+    "precio": 66.90,
+    "categoria": "protecciones",
+    "destacado": false,
+    "tallas": ["S", "M", "L"],
+    "descripcion": "Casco abierto de competición amateur. Fabricado en piel de vaca. Cierre trasero de doble velcro.",
+    "colores": [
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2024/05/Casco-refugee-RJ-web1.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2025/03/Talla-cascos-refugee-2-510x326.webp"
+        ]
+      },
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/04/Casco-refugee-AZ-web.webp"
+        ]
+      },
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/04/Casco-refugee-NG-web2.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "nombre": "Casco Boxeo Prof. Pómulos MARLOWE",
+    "precio": 98.00,
+    "categoria": "protecciones",
+    "destacado": false,
+    "tallas": ["M","L"],
+    "descripcion": "Piel de alta calidad. Pómulos grandes para la mayor protección. Cierre de cuerdas trasero y superior para una mejor sujeción.",
+    "colores": [
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Marlowe-az-web1.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Marlowe-az-web2.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Marlowe-az-web3.webp"
+        ]
+      },
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/10/Marlowe-Gra-web1.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "nombre": "Casco Boxeo Barra Prof. HEPCAT",
+    "precio": 103.00,
+    "categoria": "protecciones",
+    "destacado": false,
+    "tallas": ["S/M","L/XL"],
+    "descripcion": "Fabricado en piel de alta calidad para mayor durabilidad. La forma de la barra en «V» proporciona una mayor visibilidad sin comprometer la protección. Cierre de cuerdas para mejor ajuste.",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Hepcat-web1.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Hepcat-web2.webp"
+        ]
+  },
+  {
+    "id": 23,
+    "nombre": "Coquilla Boxeo Profesional THE CLASH",
+    "precio": 86.00,
+    "categoria": "protecciones",
+    "destacado": false,
+    "tallas": ["S","M","L","XL"],
+    "descripcion": "Fabricada en piel de vaca. Ideal para sparring y competición. Muy ligera. Máxima protección y comodidad. Ajuste trasero de velcro.",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Coquilla-clash-web3.webp"
+        ]
+  },
+  {
+    "id": 24,
+    "nombre": "Coquilla Boxeo Amateur VINYL",
+    "precio": 29.90,
+    "categoria": "protecciones",
+    "destacado": false,
+    "tallas": ["S","M","L","XL"],
+    "descripcion": "Protección fabricada en vinilo.  Goma elástica con cierre de cuerda. Cómoda y ligera. Ajustable.",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2024/05/Coquilla-Amateur-web-4.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2024/05/Coquilla-Amateur-web-6.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2016/06/Coquilla-Amateur-2-web.webp"
+        ]
+  },
+  {
+    "id": 25,
+    "nombre": "Coquilla Boxeo SLASTIC",
+    "precio": 15.50,
+    "categoria": "protecciones",
+    "destacado": false,
+    "tallas": ["S/M","L/XL"],
+    "descripcion": "Fabricado en piel de alta calidad para mayor durabilidad. La forma de la barra en «V» proporciona una mayor visibilidad sin comprometer la protección. Cierre de cuerdas para mejor ajuste.",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2016/06/Slastic-1-510x434.gif",
+          "https://www.moluboxing.com/wp-content/uploads/2016/06/Slastic-2-510x434.gif"
+        ]
+  },
+  {
+    "id": 26,
+    "nombre": "Protector Bucal Boxeo GEL – Niñ@s",
+    "precio": 11.95,
+    "categoria": "ninos",
+    "destacado": false,
+    "tallas": [],
+    "descripcion": "Hervible.  Material: Gel Color: Blanco/Azul  Incluye caja e instrucciones en Español.  Recomendado para 10 años o menos.",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2017/01/bucal-ninos-2.gif",
+          "https://www.moluboxing.com/wp-content/uploads/2017/01/bucal-ninos-3.gif"
+        ]
+  },
+  {
+    "id": 27,
+    "nombre": "Protector Bucal Boxeo T.Rex",
+    "precio": 19.50,
+    "categoria": "bucales",
+    "destacado": false,
+    "tallas": [],
+    "descripcion": "Proporciona máxima protección para dientes, mandíbula y cerebro.  El diseño de Ondas absorbe el impacto y proporciona la protección suplementaria a la mandíbula superior e inferior.  Provee una ajustada y confortable sensación entre los dientes y el protector.  Dispositivo de conexión con más capacidad de aguante y sujección.",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2016/02/trex1.jpg",
+          "https://www.moluboxing.com/wp-content/uploads/2016/02/trex2.jpg",
+          "https://www.moluboxing.com/wp-content/uploads/2016/02/trex3.jpg"
+        ]
+  },
+  {
+    "id": 27,
+    "nombre": "Protector Bucal Boxeo GEL",
+    "precio": 13.95,
+    "categoria": "bucales",
+    "destacado": false,
+    "tallas": [],
+    "descripcion": "Fabricado con Gel para un ajuste perfecto.  Incluye caja de transporte e instrucciones.",
+    "imagenes": [
+              "https://www.moluboxing.com/wp-content/uploads/2015/02/Bucal.jpg"
+            ]
+  },
+  {
+    "id": 28,
+    "nombre": "Espinillera GEL SWING",
+    "precio": 52.00,
+    "categoria": "protecciones",
+    "destacado": false,
+    "tallas": ["XXS","XS","S","M","L","XL"],
+    "descripcion": "Fabricada en PU Flex de alta calidad. Interior con refuerzo de GEL en las zonas de golpeo. Tira de sujeción en el talón para una mayor seguridad.",
+    "colores": [
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2024/05/Espinillera-Gel-Swing-NG-web1.webp"
+        ]
+      },
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2024/05/Espinillera-Gel-Swing-RJ-web1.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "nombre": "Espinillera TUBO Competición",
+    "precio": 23.00,
+    "categoria": "protecciones",
+    "destacado": false,
+    "tallas": ["M","L"],
+    "descripcion": "Fabricada en PU Flex de alta calidad. Interior con refuerzo de GEL en las zonas de golpeo. Tira de sujeción en el talón para una mayor seguridad.",
+    "colores": [
+      {
+        "nombre": "azul",
+        "hex": "#2563EB",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/01/Espinillera-Tubo-AZUL-nv-web-1.png"
+        ]
+      },
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/01/Espinillera-Tubo-roja-nv-web-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "nombre": "Espinillera GEL",
+    "precio": 23.00,
+    "categoria": "protecciones",
+    "destacado": false,
+    "tallas": ["M","L"],
+    "descripcion": "Espinillera con refuerzo. Cómoda. Interior con gel",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/01/espin_gel_002_1.jpg"
+        ]
+  },
+  {
+    "id": 31,
+    "nombre": "Venda Interdigital Boxeo",
+    "precio": 29.95,
+    "categoria": "vendas",
+    "destacado": false,
+    "tallas": ["M","L"],
+    "descripcion": "La máxima protección para tus manos. Protege tus nudillos con su relleno y el sistema de entrelazado interdigital con velcro. Incluye 1,5 metros de venda para una fijación perfecta.",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2026/03/Venda-Interdigital-1-web.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2026/03/Venda-Interdigital-5-web.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2026/03/Venda-Interdigital-6-web.webp"
+        ]
+  },
+  {
+    "id": 32,
+    "nombre": "Protector de Nudillos con GEL",
+    "precio": 15.00,
+    "categoria": "vendas",
+    "destacado": false,
+    "tallas": [],
+    "descripcion": "Fabricado en nylon para una gran durabilidad. Capa de Gel de 1 cm. de grosor para absorber los golpes de forma más eficiente. Elástico de sujeción para que solo tengas que vendarte por encima.",
+    "colores": [
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Nudillos-web.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/Nudillos-NG-1-web-510x434.webp"
+        ]
+      },
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/08/Nudillos-web.webp",
+          "https://www.moluboxing.com/wp-content/uploads/2023/08/Nudillos-RJ-1-web-510x434.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "nombre": " Venda Boxeo Semielástica 3m",
+    "precio": 9.50,
+    "categoria": "ninos",
+    "destacado": false,
+    "tallas": [],
+    "descripcion": "Tejido semielástico y velcro ancho para mayor sujeción. 3 metros de largo x 5 cm. de ancho. Par.",
+    
+    "colores": [
+      {
+        "nombre": "negro",
+        "hex": "#2b2d2c",
+        "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/07/Vendas-3m-web.webp"
+        ]
+      },
+      {
+        "nombre": "rojo",
+        "hex": "#ea363f"
+      },
+      {
+        "nombre": "azul",
+        "hex": "#2563EB"
+      },
+      {
+        "nombre": "rosa",
+        "hex": "#bf7096"
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "nombre": "Protector de nudillos GEL con vendas",
+    "precio": 19.00,
+    "categoria": "vendas",
+    "destacado": false,
+    "tallas": ["M","L"],
+    "descripcion": "Guante protector de nudillos de gel.  Incluye venda semielástica de 2,5 mts. de largo y 5 cm. de ancho, con cierre de velcro para una protección adicional.",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2015/02/protector-nudillos-510x600.gif"
+        ]
+  },
+  {
+    "id": 35,
+    "nombre": "Venda Boxeo Semielástica 5m",
+    "precio": 11.00,
+    "categoria": "vendas",
+    "destacado": false,
+    "tallas": ["M","L"],
+    "descripcion": "Venda SEMIELÁSTICA de 5 metros. Velcro ancho para mejor sujeción. Par. Modelos: ESPAÑA - JAMMIN - LIMA - AZUL - BLANCO - CANARIAS - NARANJA - NEGRO - ROJO - ROSA",
+    "imagenes": [
+          "https://www.moluboxing.com/wp-content/uploads/2025/11/Vendas-Web-510x434.webp"
+        ]
   }
 ]

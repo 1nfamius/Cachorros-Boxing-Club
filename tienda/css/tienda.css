@@ -1,11 +1,11 @@
-/* tienda.css - Escaparate sin pagos */
+/* tienda.css - Escaparate con filtros, orden y destacados */
 
 /* =====================
    LAYOUT TIENDA
    ===================== */
 
 .tienda-main {
-  max-width: 1100px;
+  max-width: 75%;
   margin: 0 auto;
   padding: calc(var(--nav-height) + 3rem) 4rem 4rem;
 }
@@ -38,7 +38,7 @@
   font-size: 0.8rem;
   color: var(--gris-claro);
   letter-spacing: 1px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .tienda-aviso a {
@@ -50,6 +50,116 @@
 .tienda-aviso a:hover { text-decoration: underline; }
 
 /* =====================
+   CONTROLES
+   ===================== */
+
+.tienda-controles {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.filtros-categoria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.filtro-btn {
+  padding: 0.45rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--gris-claro);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.filtro-btn:hover {
+  border-color: rgba(204,0,0,0.5);
+  color: var(--blanco);
+}
+
+.filtro-btn.active {
+  border-color: var(--rojo);
+  color: var(--rojo);
+}
+
+.orden-wrap {
+  flex-shrink: 0;
+}
+
+.orden-select {
+  background: var(--gris-oscuro);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--gris-claro);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.orden-select:hover { border-color: rgba(204,0,0,0.4); }
+.orden-select:focus { border-color: var(--rojo); }
+
+/* =====================
+   DESTACADOS
+   ===================== */
+
+.destacados-wrap {
+  margin-bottom: 2rem;
+}
+
+.destacados-label {
+  margin-bottom: 1rem;
+}
+
+.destacados-grid {
+  background: rgba(204,0,0,0.04) !important;
+  border: 1px solid rgba(204,0,0,0.15);
+}
+
+.destacados-sep {
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.product-destacado {
+  position: relative;
+}
+
+.badge-destacado {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--rojo);
+  color: var(--blanco);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  z-index: 2;
+}
+
+/* =====================
    GRID DE PRODUCTOS
    ===================== */
 
@@ -58,6 +168,16 @@
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1px;
   background: rgba(255,255,255,0.06);
+}
+
+.sin-productos {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: var(--gris-claro);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .product-card {
@@ -71,9 +191,7 @@
 .product-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   height: 2px;
   background: var(--rojo);
   transform: scaleX(0);
@@ -87,7 +205,7 @@
 .product-img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: fill;
   display: block;
   background: var(--gris-medio);
 }
@@ -102,7 +220,13 @@
   font-size: 48px;
 }
 
-.product-info { padding: 1.2rem; }
+.product-info { 
+  padding: 1.2rem;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
 
 .product-name {
   font-family: 'Bebas Neue', sans-serif;
@@ -169,7 +293,7 @@
 .modal {
   display: none;
   position: fixed;
-  top: 50%;
+  top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -210,7 +334,7 @@
 .modal-imgs img {
   width: 100%;
   object-fit: cover;
-  height: 220px;
+  min-height: 220px;
   background: var(--gris-medio);
   cursor: zoom-in;
   transition: opacity 0.2s;
@@ -244,7 +368,6 @@
   color: var(--rojo) !important;
 }
 
-/* Aviso de compra en gym dentro del modal */
 .modal-aviso {
   margin-top: auto;
   padding: 1rem;
@@ -263,7 +386,7 @@
 .modal-aviso a:hover { text-decoration: underline; }
 
 /* =====================
-   SELECTORES TALLA/COLOR
+   SELECTORES
    ===================== */
 
 .selector { display: flex; flex-direction: column; gap: 8px; }
@@ -294,15 +417,8 @@
   transition: border-color 0.2s, color 0.2s;
 }
 
-.option-btn:hover {
-  border-color: rgba(204,0,0,0.5);
-  color: var(--blanco);
-}
-
-.option-btn.selected {
-  border-color: var(--rojo);
-  color: var(--rojo);
-}
+.option-btn:hover { border-color: rgba(204,0,0,0.5); color: var(--blanco); }
+.option-btn.selected { border-color: var(--rojo); color: var(--rojo); }
 
 .color-btn {
   width: 28px;
@@ -335,13 +451,57 @@
   gap: 1rem;
 }
 
+/* Añadir al tienda.css */
+
+/* =====================
+   VER MÁS
+   ===================== */
+
+.ver-mas-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.ver-mas-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 1rem 3rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--gris-claro);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.ver-mas-btn:hover {
+  border-color: var(--rojo);
+  color: var(--blanco);
+}
+
+.ver-mas-count {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--gris-claro);
+}
+
 /* =====================
    RESPONSIVE
    ===================== */
 
 @media (max-width: 768px) {
-  .tienda-main { padding: calc(var(--nav-height) + 2rem) 1.5rem 3rem; }
+  .tienda-main { padding: calc(var(--nav-height) + 2rem) 1.5rem 3rem; max-width: 90%;}
   .products { grid-template-columns: repeat(2, 1fr); }
+  .tienda-controles { flex-direction: column; }
+  .orden-select { width: 100%; }
   .modal {
     flex-direction: column;
     width: 95%;

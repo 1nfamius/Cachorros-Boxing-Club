@@ -242,38 +242,41 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 0.82rem;
+      background-color: rgba(240, 240, 240, 0.959);
+      border-radius: 10px;
+      color: var(--negro);
     }
  
     thead th {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1rem;
       letter-spacing: 2px;
-      color: var(--rojo);
+      color: rgba(177, 0, 0, 0.767);
       padding: 1rem 1.2rem;
       text-align: center;
-      border-bottom: 1px solid rgba(204,0,0,0.3);
+      border-bottom: 1px solid rgba(197, 0, 0, 0.623);
     }
  
-    thead th:first-child { text-align: left; color: var(--gris-claro); }
+    thead th:first-child { text-align: left; color: var(--gris-oscuro); }
  
-    tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); }
-    tbody tr:hover { background: rgba(255,255,255,0.02); }
+    tbody tr { border-bottom: 1px solid rgba(114, 114, 114, 0.11); }
+    tbody tr:hover { background: rgba(163, 163, 163, 0.226); }
  
     tbody td {
       padding: 0.85rem 1.2rem;
       text-align: center;
-      color: var(--gris-claro);
+      color: var(--gris-oscuro);
       font-size: 0.8rem;
     }
  
     tbody td:first-child {
       text-align: left;
       font-weight: 700;
-      color: var(--blanco);
+      color: var(--gris-oscuro);
       font-size: 0.75rem;
       letter-spacing: 1px;
     }
-    .horas{ font-weight: 900; font-size: 16px; }
+    .horas{ font-weight: 900; font-size: 16px; color: var(--gris-oscuro);}
     .clase-boxeo { color: var(--boxeo-color); font-weight: 900; font-size: 16px;}
     .clase-boxeo-inf { color: var(--boxeo-inf-color); font-weight: 900; font-size: 16px;}
     .clase-kick-joven { color: var(--kickboxing-joven-color); font-weight: 900; font-size: 16px;}
