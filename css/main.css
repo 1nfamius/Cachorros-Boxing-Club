@@ -230,7 +230,7 @@
  
     .horarios {
       padding: 6rem 4rem;
-      background: var(--gris-oscuro);
+      background: var(--gris-horario);
     }
  
     .horarios-table-wrap {
