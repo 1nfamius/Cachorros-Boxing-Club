@@ -4,7 +4,7 @@
     "nombre": "Guante Boxeo Competición AMATEUR",
     "precio": 62.00,
     "categoria": "guantes",
-    "destacado": true,
+    "destacado": false,
     "tallas": ["10 Oz", "12 Oz"],
     "descripcion": "Guante amateur de competición. Fabricado en piel. Cierre de velcro.",
     "colores": [
@@ -516,7 +516,7 @@
     "nombre": "Guante Boxeo SMALL FACES",
     "precio": 41.00,
     "categoria": "ninos",
-    "destacado": false,
+    "destacado": true,
     "tallas": ["6 Oz", "8 Oz"],
     "descripcion": "Guante fabricado en PU. Ideal para niñ@s. Relleno de molde. Gran variedad de colores.",
     "colores": [
