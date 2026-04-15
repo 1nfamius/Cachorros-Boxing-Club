@@ -92,7 +92,7 @@ main{
 .noticia-img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: fill;
   display: block;
   background: var(--gris-medio);
 }
@@ -271,4 +271,7 @@ main{
   .noticias-main { padding: calc(var(--nav-height) + 2rem) 1.5rem 3rem; }
   .noticias-grid { grid-template-columns: 1fr; }
   .noticia-modal { width: 95%; padding: 1.5rem; }
+  .noticia-modal-img {
+    object-fit: fill;
+  }
 }
