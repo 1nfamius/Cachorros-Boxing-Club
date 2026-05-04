@@ -6,13 +6,13 @@ const GITHUB_BRANCH = "main";
 const CONTENT_PATH = "content/noticias";
 
 const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${CONTENT_PATH}`;
-const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${CONTENT_PATH}`;
+const RAW_BASE = `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${GITHUB_BRANCH}/${CONTENT_PATH}`;
 
 function resolverImagen(ruta) {
   if (!ruta) return "";
   if (ruta.startsWith("http")) return ruta;
   const limpia = ruta.replace(/^\//, "");
-  return `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${limpia}`;
+  return `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${GITHUB_BRANCH}/${limpia}`;
 }
 
 function parsearFrontmatter(texto) {
@@ -31,22 +31,20 @@ function parsearFrontmatter(texto) {
 
 async function cargarFightBar() {
   try {
-    const res = await fetch(API_URL);
+    const res = await fetch(API_URL + `?_=${Date.now()}`);
     if (!res.ok) return;
     const archivos = await res.json();
 
     const mds = archivos.filter(f => f.name.endsWith(".md")).map(f => f.name);
 
-    // Descarga y parsea todos los .md
     const todos = await Promise.all(mds.map(async nombre => {
       try {
-        const r = await fetch(`${RAW_BASE}/${nombre}`);
+        const r = await fetch(`${RAW_BASE}/${nombre}?_=${Date.now()}`);
         const texto = await r.text();
         return parsearFrontmatter(texto);
       } catch { return null; }
     }));
 
-    // Filtra solo combates futuros (margen 24h para el día del combate)
     const ahora = new Date();
     const combates = todos
       .filter(d => d && d.tipo === "combate" && d.fecha_combate)
@@ -70,7 +68,7 @@ async function cargarFightBar() {
 
       const label = esHoy ? "🔥 HOY HAY COMBATE 🔥"
         : esFuturo ? "PRÓXIMA PELEA" : "COMBATE";
-      
+
       const fechaTexto = c.fechaObj.toLocaleDateString("es-ES", {
         day: "numeric", month: "long"
       });
@@ -80,6 +78,7 @@ async function cargarFightBar() {
         : c.titulo || "";
 
       const imgCartelera = resolverImagen(c.cartelera || c.imagen);
+
       container.innerHTML = `
         <div class="fight-bar">
           <a href="${imgCartelera ? '#cartelera' : '#'}" class="fight-link">
@@ -96,7 +95,7 @@ async function cargarFightBar() {
       if (cartelaImg) cartelaImg.src = imgCartelera;
 
       if (esFuturo) iniciarCountdown(c.fechaObj);
-      
+
       document.body.classList.add('has-fight-bar');
     }
 

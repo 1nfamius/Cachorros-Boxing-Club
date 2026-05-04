@@ -49,8 +49,18 @@
     </ul>
   </header>
 
-  <main class="tienda-main">
+  <main>
+    <!-- FIGHT BAR -->
+    <div id="fight-bar-container"></div>
 
+    <!-- MODAL CARTELERA -->
+    <div id="cartelera" class="modal">
+      <div class="modal-content">
+        <a href="#" class="close">✖</a>
+        <img id="cartelera-img" src="" alt="Cartelera del combate" loading="lazy"/>
+      </div>
+    </div>
+    <div class="tienda-main">
     <div class="tienda-header">
       <span class="section-tag">Equipamiento oficial</span>
       <h1 class="section-title">Tienda</h1>
@@ -95,7 +105,7 @@
 
     <!-- TODOS LOS PRODUCTOS -->
     <div class="products" id="products"></div>
-
+    </div>
   </main>
 
   <!-- MODAL DE PRODUCTO -->
@@ -129,6 +139,7 @@
   <script src="/tienda/js/products.js"></script>
   <script src="/tienda/js/render.js"></script>
   <script src="/js/hamburger.js"></script>
+  <script src="/js/combates.js"></script>
 
 </body>
 </html>

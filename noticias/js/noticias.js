@@ -2,11 +2,11 @@
 
 const GITHUB_USER = "1nfamius";
 const GITHUB_REPO = "Cachorros-Boxing-Club";
-const GITHUB_BRANCH = "main"; // cámbialo si tu rama principal se llama "master"
+const GITHUB_BRANCH = "main";
 const CONTENT_PATH = "content/noticias";
 
 const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${CONTENT_PATH}`;
-const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${CONTENT_PATH}`;
+const RAW_BASE = `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${GITHUB_BRANCH}/${CONTENT_PATH}`;
 
 let todasLasNoticias = [];
 let filtroActivo = "todos";
@@ -26,8 +26,7 @@ async function init() {
 
 async function cargarNoticias() {
   try {
-    // Lista los archivos .md via GitHub API
-    const res = await fetch(API_URL);
+    const res = await fetch(API_URL + `?_=${Date.now()}`);
     if (!res.ok) throw new Error("Error listando noticias");
     const archivos = await res.json();
 
@@ -50,7 +49,7 @@ async function cargarNoticias() {
 
 async function cargarNoticia(nombre) {
   try {
-    const res = await fetch(`${RAW_BASE}/${nombre}`);
+    const res = await fetch(`${RAW_BASE}/${nombre}?_=${Date.now()}`);
     if (!res.ok) return null;
     const texto = await res.text();
     return parsearMarkdown(texto, nombre);
@@ -89,6 +88,8 @@ function renderNoticias(noticias) {
     ? noticias
     : noticias.filter(n => n.tipo === filtroActivo);
 
+  window._noticiasFiltradas = filtradas;
+
   if (filtradas.length === 0) {
     grid.innerHTML = '<p class="sin-noticias">No hay entradas en esta categoría</p>';
     return;
@@ -110,21 +111,16 @@ function renderNoticias(noticias) {
       </div>
     </div>
   `).join("");
-
-  window._noticiasFiltradas = filtradas;
 }
 
 /* =====================
    RESOLVER IMAGEN
-   Pages CMS guarda las imágenes como rutas relativas tipo
-   /assets/images/noticias/foto.jpg — las servimos desde raw.githubusercontent
    ===================== */
 function resolverImagen(ruta) {
   if (!ruta) return "";
   if (ruta.startsWith("http")) return ruta;
-  // Quita la barra inicial si existe
   const limpia = ruta.replace(/^\//, "");
-  return `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${limpia}`;
+  return `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${GITHUB_BRANCH}/${limpia}`;
 }
 
 /* =====================
@@ -137,7 +133,6 @@ function openNoticia(i) {
 
   const contenido = document.getElementById("noticia-modal-content");
 
-  // Para combates, muestra info extra si existe
   const infoCombate = n.tipo === "combate" && (n.peleador || n.rival) ? `
     <div class="combate-info-modal">
       <span class="combate-vs">${n.peleador || '?'} <em>vs</em> ${n.rival || '?'}</span>
@@ -147,7 +142,6 @@ function openNoticia(i) {
     </div>
   ` : '';
 
-  // Imagen: para combates usa cartelera si existe, si no la imagen normal
   const imgSrc = resolverImagen(n.cartelera || n.imagen);
 
   contenido.innerHTML = `

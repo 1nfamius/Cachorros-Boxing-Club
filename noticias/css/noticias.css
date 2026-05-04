@@ -12,6 +12,11 @@ main{
   padding: calc(var(--nav-height) + 3rem) 4rem 4rem;
 }
 
+/* Compensa la fight bar cuando está activa */
+body.has-fight-bar .noticias-main {
+  padding-top: calc(var(--nav-height) + 38px + 3rem);
+}
+
 .noticias-header {
   display: flex;
   align-items: baseline;
@@ -253,7 +258,7 @@ main{
 }
 
 .noticia-modal-texto p { margin-bottom: 1rem; }
-.noticia-modal-texto h2, 
+.noticia-modal-texto h2,
 .noticia-modal-texto h3 {
   font-family: 'Bebas Neue', sans-serif;
   color: var(--blanco);
@@ -264,14 +269,53 @@ main{
 .noticia-modal-texto a { color: var(--rojo); }
 
 /* =====================
+   COMBATE INFO MODAL
+   ===================== */
+
+.combate-info-modal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  background: rgba(204,0,0,0.08);
+  border-left: 3px solid var(--rojo);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.combate-vs {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color: var(--blanco);
+}
+
+.combate-vs em {
+  color: var(--rojo);
+  font-style: normal;
+  margin: 0 0.4rem;
+}
+
+.combate-detalle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--gris-claro);
+  text-transform: uppercase;
+}
+
+/* =====================
    RESPONSIVE
    ===================== */
 
 @media (max-width: 768px) {
   .noticias-main { padding: calc(var(--nav-height) + 2rem) 1.5rem 3rem; }
+
+  body.has-fight-bar .noticias-main {
+    padding-top: calc(var(--nav-height) + 38px + 2rem);
+  }
+
   .noticias-grid { grid-template-columns: 1fr; }
   .noticia-modal { width: 95%; padding: 1.5rem; }
-  .noticia-modal-img {
-    object-fit: fill;
-  }
+  .noticia-modal-img { object-fit: fill; }
 }
