@@ -3,7 +3,7 @@
        ===================== */
  
     .hero {
-      min-height: 100vh;
+      min-height: 90vh;
       display: flex;
       align-items: center;
       position: relative;
@@ -308,17 +308,9 @@
       overflow: hidden;
       border-top: 1px solid rgba(204,0,0,0.2);
       border-bottom: 1px solid rgba(204,0,0,0.2);
-      background-image: url("/img/main/inscripcion-hook-boxeo.webp");
+      background-image: url("/img/main/inscripcion-boxeo-hook.webp");
       background-size: cover;
       background-position: center;
-    }
-    .inscripcion::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.164);
-      z-index: 1;
     }
     
     .inscripcion-bg {
@@ -326,6 +318,7 @@
       inset: 0;
       background: radial-gradient(ellipse at 80% 50%, rgba(204,0,0,0.08) 0%, transparent 60%);
       pointer-events: none;
+
     }
     
     .inscripcion-content {

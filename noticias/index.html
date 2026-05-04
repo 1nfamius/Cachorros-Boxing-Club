@@ -16,18 +16,6 @@
   <link rel="canonical" href="https://cachorros-boxing-club.com/noticias">
 </head>
 <body>
-
-  <!-- FIGHT BAR -->
-  <div id="fight-bar-container"></div>
-
-  <!-- MODAL CARTELERA -->
-  <div id="cartelera" class="modal">
-    <div class="modal-content">
-      <a href="#" class="close">✖</a>
-      <img id="cartelera-img" src="" alt="Cartelera del combate" loading="lazy"/>
-    </div>
-  </div>
-
   <header>
     <nav>
       <div class="header-logo-box">
@@ -58,8 +46,18 @@
     </ul>
   </header>
 
-  <main class="noticias-main">
+  <main>
+    <!-- FIGHT BAR -->
+    <div id="fight-bar-container"></div>
 
+    <!-- MODAL CARTELERA — usar esta estructura en index.html, tienda.html y noticias.html -->
+    <div id="cartelera-modal" class="cartelera-modal" onclick="cerrarCartelera()">
+      <div class="cartelera-modal-inner" onclick="event.stopPropagation()">
+        <button class="cartelera-close" onclick="cerrarCartelera()">✖</button>
+        <img id="cartelera-img" src="" alt="Cartelera del combate" loading="lazy"/>
+      </div>
+    </div>
+    <div class="noticias-main">
     <div class="noticias-header">
       <span class="section-tag">Club</span>
       <h1 class="section-title">Noticias y Eventos</h1>
@@ -86,7 +84,7 @@
       <button class="noticia-close" onclick="closeNoticia()" aria-label="Cerrar noticia">✖</button>
       <div class="noticia-modal-content" id="noticia-modal-content"></div>
     </div>
-
+    </div>
   </main>
 
   <footer>
@@ -94,10 +92,10 @@
     <p>© 2026 Cachorros Boxing Club · La Muela, Zaragoza</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="/js/combates.js"></script>
   <script src="/noticias/js/noticias.js"></script>
+  <script src="/js/combates.js"></script>
   <script src="/js/hamburger.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 </body>
 </html>

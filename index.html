@@ -134,11 +134,13 @@
     </ul>
   </header>
   <main>
+    <!-- FIGHT BAR -->
     <div id="fight-bar-container"></div>
 
-    <div id="cartelera" class="modal">
-      <div class="modal-content">
-        <a href="#" class="close">✖</a>
+    <!-- MODAL CARTELERA — usar esta estructura en index.html, tienda.html y noticias.html -->
+    <div id="cartelera-modal" class="cartelera-modal" onclick="cerrarCartelera()">
+      <div class="cartelera-modal-inner" onclick="event.stopPropagation()">
+        <button class="cartelera-close" onclick="cerrarCartelera()">✖</button>
         <img id="cartelera-img" src="" alt="Cartelera del combate" loading="lazy"/>
       </div>
     </div>

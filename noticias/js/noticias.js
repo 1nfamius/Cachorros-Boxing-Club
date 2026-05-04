@@ -1,4 +1,4 @@
-// noticias.js — lee .md desde GitHub directamente (sin backend)
+(function() {
 
 const GITHUB_USER = "1nfamius";
 const GITHUB_REPO = "Cachorros-Boxing-Club";
@@ -11,18 +11,10 @@ const RAW_BASE = `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${GI
 let todasLasNoticias = [];
 let filtroActivo = "todos";
 
-/* =====================
-   INICIALIZACIÓN
-   ===================== */
-
 async function init() {
   await cargarNoticias();
   initFiltros();
 }
-
-/* =====================
-   CARGA DE NOTICIAS
-   ===================== */
 
 async function cargarNoticias() {
   try {
@@ -32,7 +24,7 @@ async function cargarNoticias() {
 
     const mds = archivos
       .filter(f => f.name.endsWith(".md"))
-      .map(f => f.name);
+      .map(f => f.name.replace(/^\[|\]$/g, ""));
 
     const promesas = mds.map(nombre => cargarNoticia(nombre));
     todasLasNoticias = (await Promise.all(promesas)).filter(n => n !== null);
@@ -77,10 +69,6 @@ function parsearMarkdown(texto, archivo) {
   return noticia;
 }
 
-/* =====================
-   RENDER NOTICIAS
-   ===================== */
-
 function renderNoticias(noticias) {
   const grid = document.getElementById("noticias-grid");
 
@@ -96,10 +84,10 @@ function renderNoticias(noticias) {
   }
 
   grid.innerHTML = filtradas.map((n, i) => `
-    <div class="noticia-card" onclick="openNoticia(${i})">
+    <div class="noticia-card" onclick="window._openNoticia(${i})">
       ${n.imagen
         ? `<img class="noticia-img" src="${resolverImagen(n.imagen)}" alt="${n.titulo || ''}" loading="lazy" onerror="this.style.display='none'">`
-        : `<div class="noticia-img-placeholder"><span>BKU</span></div>`
+        : `<div class="noticia-img-placeholder"><span>CBC</span></div>`
       }
       <div class="noticia-body">
         <div class="noticia-meta">
@@ -113,19 +101,12 @@ function renderNoticias(noticias) {
   `).join("");
 }
 
-/* =====================
-   RESOLVER IMAGEN
-   ===================== */
 function resolverImagen(ruta) {
   if (!ruta) return "";
   if (ruta.startsWith("http")) return ruta;
   const limpia = ruta.replace(/^\//, "");
   return `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${GITHUB_BRANCH}/${limpia}`;
 }
-
-/* =====================
-   MODAL
-   ===================== */
 
 function openNoticia(i) {
   const n = window._noticiasFiltradas[i];
@@ -160,15 +141,16 @@ function openNoticia(i) {
   document.body.style.overflow = "hidden";
 }
 
+// Exponer al scope global para los onclick del HTML generado dinámicamente
+window._openNoticia = openNoticia;
+
 function closeNoticia() {
   document.getElementById("noticia-overlay").classList.remove("open");
   document.getElementById("noticia-modal").classList.remove("open");
   document.body.style.overflow = "";
 }
 
-/* =====================
-   FILTROS
-   ===================== */
+window.closeNoticia = closeNoticia;
 
 function initFiltros() {
   document.querySelectorAll(".filtro-btn").forEach(btn => {
@@ -180,10 +162,6 @@ function initFiltros() {
     });
   });
 }
-
-/* =====================
-   HELPERS
-   ===================== */
 
 function formatearFecha(fecha) {
   if (!fecha) return "";
@@ -203,3 +181,5 @@ function labelTipo(tipo) {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+})();
