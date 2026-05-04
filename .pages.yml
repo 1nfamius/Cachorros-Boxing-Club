@@ -34,6 +34,8 @@ content:
               label: Resultado
             - name: comunicado
               label: Comunicado
+            - name: combate
+              label: Combate
               
       - name: imagen
         label: Imagen destacada
@@ -46,12 +48,29 @@ content:
       - name: body
         label: Contenido
         type: rich-text
-
-  - name: "noticias-index"
-    label: "Índice de noticias"
-    type: "file"
-    path: "content/noticias/index.json"
-    fields:
-      - name: "body"
-        label: "Lista"
-        type: "code"
+        
+      - name: peleador
+        label: Nuestro peleador
+        type: string
+        
+      - name: rival
+        label: Rival
+        type: string
+        
+      - name: lugar
+        label: Lugar del combate
+        type: string
+        
+      - name: hora_combate
+        label: Hora del combate
+        type: string
+        description: "Formato HH:MM (ej: 20:00)"
+        
+      - name: fecha_combate
+        label: Fecha del combate
+        type: date
+        description: "Si es distinta a la fecha de publicación"
+        
+      - name: cartelera
+        label: Cartelera (imagen)
+        type: image
