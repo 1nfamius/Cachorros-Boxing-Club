@@ -7,12 +7,12 @@
   --negro: #0a0a0a;
   --gris-oscuro: #141414;
   --gris-medio: #222222;
-  --gris-claro: #888888;
+  --gris-claro: #a5a5a5;
   --gris-horario: #191919;
-  --blanco: #F5F5F0;
+  --blanco: #f0f0e9;
   --nav-height: 72px;
 
-  --boxeo-color: #e0ca00;
+  --boxeo-color: #d8c306;
   --boxeo-inf-color: #019dd6;
   --kickboxing-joven-color: #7030a0;
   --kickboxing-inf-color: #dd890a;
@@ -30,6 +30,145 @@ body {
   background: var(--negro);
   color: var(--blanco);
   overflow-x: hidden;
+}
+
+/* =====================
+   FIGHT BAR
+   ===================== */
+
+#fight-bar-container {
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.fight-bar {
+  background: linear-gradient(90deg, #8B0000 0%, var(--rojo) 50%, #8B0000 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  animation: fightPulse 3s ease-in-out infinite;
+}
+
+@keyframes fightPulse {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.fight-link {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem 1.4rem;
+  padding: 0.65rem 2rem;
+  color: var(--blanco);
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.fight-link:hover {
+  background: rgba(0,0,0,0.15);
+}
+
+.fight-label {
+  background: rgba(0,0,0,0.35);
+  color: var(--blanco);
+  padding: 0.2rem 0.7rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 3px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.fight-main {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 3px;
+  color: var(--blanco);
+}
+
+.fight-vs {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.9rem;
+  margin: 0 0.3rem;
+}
+
+.fight-extra {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.75);
+  text-transform: uppercase;
+}
+
+.fight-countdown {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.6);
+  background: rgba(0,0,0,0.25);
+  padding: 0.15rem 0.6rem;
+}
+
+/* =====================
+   MODAL CARTELERA
+   ===================== */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal:target { display: flex; }
+
+.modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 88vh;
+  display: block;
+  border: 1px solid rgba(204,0,0,0.3);
+}
+
+.modal .close {
+  position: absolute;
+  top: -2rem;
+  right: 0;
+  color: var(--gris-claro);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+
+.modal .close:hover { color: var(--rojo); }
+
+/* Ajuste body cuando fight bar está activa */
+body.has-fight-bar main,
+body.has-fight-bar .hero {
+  padding-top: calc(var(--nav-height) + 38px);
+}
+
+@media (max-width: 768px) {
+  .fight-link {
+    padding: 0.6rem 1rem;
+    gap: 0.3rem 0.8rem;
+  }
+  .fight-main { font-size: 1rem; }
+  .fight-extra { display: none; }
 }
 
 /* =====================

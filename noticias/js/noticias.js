@@ -1,14 +1,15 @@
-// noticias.js
-// Lee los archivos Markdown generados por Pages CMS
-// y los pinta en la página de noticias.
+// noticias.js — lee .md desde GitHub directamente (sin backend)
+
+const GITHUB_USER = "1nfamius";
+const GITHUB_REPO = "Cachorros-Boxing-Club";
+const GITHUB_BRANCH = "main"; // cámbialo si tu rama principal se llama "master"
+const CONTENT_PATH = "content/noticias";
+
+const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${CONTENT_PATH}`;
+const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${CONTENT_PATH}`;
 
 let todasLasNoticias = [];
 let filtroActivo = "todos";
-
-// Lista de noticias disponibles
-// Pages CMS guarda cada noticia como un .md en /content/noticias/
-// Este archivo se actualiza automáticamente con cada nueva noticia
-const NOTICIAS_INDEX = "/api/noticias-index";
 
 /* =====================
    INICIALIZACIÓN
@@ -25,45 +26,53 @@ async function init() {
 
 async function cargarNoticias() {
   try {
-    const res = await fetch(NOTICIAS_INDEX);
-    if (!res.ok) throw new Error("No se encontró el índice");
+    // Lista los archivos .md via GitHub API
+    const res = await fetch(API_URL);
+    if (!res.ok) throw new Error("Error listando noticias");
     const archivos = await res.json();
 
-    const promesas = archivos.map(archivo => cargarNoticia(archivo));
+    const mds = archivos
+      .filter(f => f.name.endsWith(".md"))
+      .map(f => f.name);
+
+    const promesas = mds.map(nombre => cargarNoticia(nombre));
     todasLasNoticias = (await Promise.all(promesas)).filter(n => n !== null);
 
-    // Ordena por fecha, más reciente primero
     todasLasNoticias.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 
     renderNoticias(todasLasNoticias);
   } catch (err) {
+    console.error(err);
     document.getElementById("noticias-grid").innerHTML =
       '<p class="sin-noticias">No hay noticias disponibles aún</p>';
   }
 }
 
-async function cargarNoticia(archivo) {
-  const res = await fetch(`/content/noticias/${archivo}`);
-  const texto = await res.text();
-  return parsearMarkdown(texto, archivo);
+async function cargarNoticia(nombre) {
+  try {
+    const res = await fetch(`${RAW_BASE}/${nombre}`);
+    if (!res.ok) return null;
+    const texto = await res.text();
+    return parsearMarkdown(texto, nombre);
+  } catch {
+    return null;
+  }
 }
 
-// Parsea el frontmatter YAML + contenido markdown
 function parsearMarkdown(texto, archivo) {
-  const match = texto.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  const match = texto.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)([\s\S]*)$/);
   if (!match) return null;
 
   const frontmatter = match[1];
   const contenido = match[2].trim();
-
   const noticia = { archivo, contenido };
 
-  // Extrae los campos del frontmatter
   frontmatter.split("\n").forEach(linea => {
-    const [clave, ...valor] = linea.split(": ");
-    if (clave && valor.length) {
-      noticia[clave.trim()] = valor.join(": ").trim().replace(/^"(.*)"$/, "$1");
-    }
+    const separador = linea.indexOf(": ");
+    if (separador === -1) return;
+    const clave = linea.slice(0, separador).trim();
+    const valor = linea.slice(separador + 2).trim().replace(/^"(.*)"$/, "$1");
+    if (clave) noticia[clave] = valor;
   });
 
   return noticia;
@@ -77,8 +86,8 @@ function renderNoticias(noticias) {
   const grid = document.getElementById("noticias-grid");
 
   const filtradas = filtroActivo === "todos"
-    ? noticias.filter(n => n !== null)
-    : noticias.filter(n => n !== null && n.tipo === filtroActivo);
+    ? noticias
+    : noticias.filter(n => n.tipo === filtroActivo);
 
   if (filtradas.length === 0) {
     grid.innerHTML = '<p class="sin-noticias">No hay entradas en esta categoría</p>';
@@ -88,8 +97,8 @@ function renderNoticias(noticias) {
   grid.innerHTML = filtradas.map((n, i) => `
     <div class="noticia-card" onclick="openNoticia(${i})">
       ${n.imagen
-        ? `<img class="noticia-img" src="${n.imagen}" alt="${n.titulo}" onerror="this.style.display='none'">`
-        : `<div class="noticia-img-placeholder"><span>CBC</span></div>`
+        ? `<img class="noticia-img" src="${resolverImagen(n.imagen)}" alt="${n.titulo || ''}" loading="lazy" onerror="this.style.display='none'">`
+        : `<div class="noticia-img-placeholder"><span>BKU</span></div>`
       }
       <div class="noticia-body">
         <div class="noticia-meta">
@@ -102,8 +111,20 @@ function renderNoticias(noticias) {
     </div>
   `).join("");
 
-  // Guarda las noticias filtradas para el modal
   window._noticiasFiltradas = filtradas;
+}
+
+/* =====================
+   RESOLVER IMAGEN
+   Pages CMS guarda las imágenes como rutas relativas tipo
+   /assets/images/noticias/foto.jpg — las servimos desde raw.githubusercontent
+   ===================== */
+function resolverImagen(ruta) {
+  if (!ruta) return "";
+  if (ruta.startsWith("http")) return ruta;
+  // Quita la barra inicial si existe
+  const limpia = ruta.replace(/^\//, "");
+  return `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${limpia}`;
 }
 
 /* =====================
@@ -116,16 +137,27 @@ function openNoticia(i) {
 
   const contenido = document.getElementById("noticia-modal-content");
 
+  // Para combates, muestra info extra si existe
+  const infoCombate = n.tipo === "combate" && (n.peleador || n.rival) ? `
+    <div class="combate-info-modal">
+      <span class="combate-vs">${n.peleador || '?'} <em>vs</em> ${n.rival || '?'}</span>
+      ${n.lugar ? `<span class="combate-detalle">📍 ${n.lugar}</span>` : ''}
+      ${n.fecha_combate ? `<span class="combate-detalle">🗓️ ${formatearFecha(n.fecha_combate)}</span>` : ''}
+      ${n.hora_combate ? `<span class="combate-detalle">🕘 ${n.hora_combate}</span>` : ''}
+    </div>
+  ` : '';
+
+  // Imagen: para combates usa cartelera si existe, si no la imagen normal
+  const imgSrc = resolverImagen(n.cartelera || n.imagen);
+
   contenido.innerHTML = `
-    ${n.imagen
-      ? `<img class="noticia-modal-img" src="${n.imagen}" alt="${n.titulo}">`
-      : ''
-    }
+    ${imgSrc ? `<img class="noticia-modal-img" src="${imgSrc}" alt="${n.titulo || ''}">` : ''}
     <div class="noticia-modal-meta">
       <span class="noticia-tipo ${n.tipo || ''}">${labelTipo(n.tipo)}</span>
       <span class="noticia-fecha">${formatearFecha(n.fecha)}</span>
     </div>
-    <h2 class="noticia-modal-titulo">${n.titulo}</h2>
+    <h2 class="noticia-modal-titulo">${n.titulo || ''}</h2>
+    ${infoCombate}
     <div class="noticia-modal-texto">${marked.parse(n.contenido || '')}</div>
   `;
 
@@ -170,10 +202,10 @@ function labelTipo(tipo) {
     noticia: "Noticia",
     evento: "Evento",
     resultado: "Resultado",
-    comunicado: "Comunicado"
+    comunicado: "Comunicado",
+    combate: "Combate"
   };
   return labels[tipo] || tipo || "Noticia";
 }
 
-// Arranca
 document.addEventListener("DOMContentLoaded", init);

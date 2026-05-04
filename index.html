@@ -90,6 +90,7 @@
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/main.css">
   <script src="/js/hamburger.js"></script>
+  <script src="/js/horario.js"></script>
 </head>
 
 <body>     
@@ -132,6 +133,14 @@
     </ul>
   </header>
   <main>
+    <div id="fight-bar-container"></div>
+
+    <div id="cartelera" class="modal">
+      <div class="modal-content">
+        <a href="#" class="close">✖</a>
+        <img id="cartelera-img" src="" alt="Cartelera del combate" loading="lazy"/>
+      </div>
+    </div>
     <!-- HERO -->
     <section class="hero">
       <div class="hero-bg"></div>
@@ -289,6 +298,147 @@
           </tbody>
         </table>
       </div>
+      <div class="horarios-mobile">
+
+        <button class="dia-btn" onclick="toggleDia(this)">
+          LUNES <span class="chevron">▼</span>
+        </button>
+        <div class="dia-clases">
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">10:00 – 11:30</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">BOXEO</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--boxeo-inf-color)">
+            <span class="hora-card">16:30 – 17:30</span>
+            <span class="nombre-clase" style="color:var(--boxeo-inf-color)">BOXEO INFANTIL</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">17:30 – 19:00</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">BOXEO</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--kickboxing-joven-color)">
+            <span class="hora-card">18:15 – 19:30</span>
+            <span class="nombre-clase" style="color:var(--kickboxing-joven-color)">KICKBOXING JOVEN</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">19:00 – 20:30</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">BOXEO</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--kickboxing-senior-color)">
+            <span class="hora-card">20:15 – 21:30</span>
+            <span class="nombre-clase" style="color:var(--kickboxing-senior-color)">KICKBOXING SENIOR</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">20:30 – 21:30</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">BOXEO LIBRE</span>
+          </div>
+        </div>
+
+        <button class="dia-btn" onclick="toggleDia(this)">
+          MARTES <span class="chevron">▼</span>
+        </button>
+        <div class="dia-clases">
+          <div class="clase-card" style="border-color:var(--kickboxing-inf-color)">
+            <span class="hora-card">18:30 – 19:30</span>
+            <span class="nombre-clase" style="color:var(--kickboxing-inf-color)">KICKBOXING INFANTIL</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--entrenamiento-funcional-color)">
+            <span class="hora-card">18:30 – 20:00</span>
+            <span class="nombre-clase" style="color:var(--entrenamiento-funcional-color)">ENTRENAMIENTO FUNCIONAL</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--grappling-color)">
+            <span class="hora-card">20:15 – 21:30</span>
+            <span class="nombre-clase" style="color:var(--grappling-color)">GRAPPLING</span>
+          </div>
+        </div>
+
+        <button class="dia-btn" onclick="toggleDia(this)">
+          MIÉRCOLES <span class="chevron">▼</span>
+        </button>
+        <div class="dia-clases">
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">10:00 – 11:30</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">BOXEO</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--boxeo-inf-color)">
+            <span class="hora-card">16:30 – 17:30</span>
+            <span class="nombre-clase" style="color:var(--boxeo-inf-color)">BOXEO INFANTIL</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">17:30 – 19:00</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">BOXEO</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--kickboxing-joven-color)">
+            <span class="hora-card">18:15 – 19:30</span>
+            <span class="nombre-clase" style="color:var(--kickboxing-joven-color)">KICKBOXING JOVEN</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">19:00 – 20:30</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">BOXEO</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--kickboxing-senior-color)">
+            <span class="hora-card">20:15 – 21:30</span>
+            <span class="nombre-clase" style="color:var(--kickboxing-senior-color)">KICKBOXING SENIOR</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">20:30 – 21:30</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">BOXEO LIBRE</span>
+          </div>
+        </div>
+
+        <button class="dia-btn" onclick="toggleDia(this)">
+          JUEVES <span class="chevron">▼</span>
+        </button>
+        <div class="dia-clases">
+          <div class="clase-card" style="border-color:var(--kickboxing-inf-color)">
+            <span class="hora-card">18:30 – 19:30</span>
+            <span class="nombre-clase" style="color:var(--kickboxing-inf-color)">KICKBOXING INFANTIL</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--entrenamiento-funcional-color)">
+            <span class="hora-card">18:30 – 20:00</span>
+            <span class="nombre-clase" style="color:var(--entrenamiento-funcional-color)">ENTRENAMIENTO FUNCIONAL</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--grappling-color)">
+            <span class="hora-card">20:15 – 21:30</span>
+            <span class="nombre-clase" style="color:var(--grappling-color)">GRAPPLING</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">20:30 – 21:30</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">SPARRING</span>
+          </div>
+        </div>
+
+        <button class="dia-btn" onclick="toggleDia(this)">
+          VIERNES <span class="chevron">▼</span>
+        </button>
+        <div class="dia-clases">
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">10:00 – 11:30</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">BOXEO</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">17:30 – 19:00</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">BOXEO</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--kickboxing-joven-color)">
+            <span class="hora-card">18:15 – 19:30</span>
+            <span class="nombre-clase" style="color:var(--kickboxing-joven-color)">KICKBOXING JOVEN</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">19:00 – 20:30</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">BOXEO</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--kickboxing-senior-color)">
+            <span class="hora-card">20:15 – 21:30</span>
+            <span class="nombre-clase" style="color:var(--kickboxing-senior-color)">KICKBOXING SENIOR</span>
+          </div>
+          <div class="clase-card" style="border-color:var(--boxeo-color)">
+            <span class="hora-card">20:30 – 21:30</span>
+            <span class="nombre-clase" style="color:var(--boxeo-color)">BOXEO LIBRE</span>
+          </div>
+        </div>
+
+      </div>
     </section>
     <!-- INSCRIPCION -->
     <section class="inscripcion" id="inscripcion">
@@ -341,7 +491,7 @@
         </div>
         <iframe
           class="mapa"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.141135048938!2d-1.110715209407599!3d41.58792692905774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd595db536fab2d3%3A0x43b478bf8de2a527!2sCachorros%20Boxing%20Club!5e1!3m2!1ses!2ses!4v1774637600841!5m2!1ses!2ses"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2984.131220913139!2d-1.1081235021301274!3d41.58804389195748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd595db536fab2d3%3A0x43b478bf8de2a527!2sCachorros%20Boxing%20Club!5e0!3m2!1ses!2ses!4v1777879395411!5m2!1ses!2ses"
           allowfullscreen=""
           loading="lazy">
         </iframe>

@@ -160,7 +160,7 @@ function cargarMas() {
 }
 
 /* =====================
-   ORDENAR
+   Filtros de busqueda
    ===================== */
 
 function ordenar(lista) {
@@ -169,8 +169,6 @@ function ordenar(lista) {
       return [...lista].sort((a, b) => a.precio - b.precio);
     case "precio-desc":
       return [...lista].sort((a, b) => b.precio - a.precio);
-    case "nombre":
-      return [...lista].sort((a, b) => a.nombre.localeCompare(b.nombre));
     case "destacado":
     default:
       return [...lista].sort((a, b) => (b.destacado ? 1 : 0) - (a.destacado ? 1 : 0));

@@ -58,6 +58,7 @@
     <div class="filtros">
       <button class="filtro-btn active" data-filtro="todos">Todos</button>
       <button class="filtro-btn" data-filtro="noticia">Noticias</button>
+      <button class="filtro-btn" data-filtro="combate">Combates</button>
       <button class="filtro-btn" data-filtro="evento">Eventos</button>
       <button class="filtro-btn" data-filtro="resultado">Resultados</button>
       <button class="filtro-btn" data-filtro="comunicado">Comunicados</button>
@@ -68,10 +69,10 @@
       <div class="loading">Cargando noticias...</div>
     </div>
 
-    <!-- MODAL DE NOTICIA -->
+    <!-- OVERLAY + MODAL -->
     <div class="noticia-overlay" id="noticia-overlay" onclick="closeNoticia()"></div>
-    <div class="noticia-modal" id="noticia-modal">
-      <button class="noticia-close" onclick="closeNoticia()">×</button>
+    <div class="noticia-modal" id="noticia-modal" role="dialog" aria-modal="true" aria-labelledby="noticia-modal-titulo">
+      <button class="noticia-close" onclick="closeNoticia()" aria-label="Cerrar noticia">✖</button>
       <div class="noticia-modal-content" id="noticia-modal-content"></div>
     </div>
 
