@@ -2,7 +2,7 @@
 titulo: Velada de Boxeo en la Muela
 fecha: 2026-05-04
 tipo: combate
-imagen: /assets/images/noticias/hero.webp
+imagen: /assets/images/noticias/image.webp
 resumen: Velada de boxeo en La Muela 4 combates amateur
 peleador: Peleador 1
 rival: "Peleador 2 "
