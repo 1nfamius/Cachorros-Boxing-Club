@@ -249,6 +249,13 @@
       margin-top: 2rem;
     }
     
+    .horario-verano{
+      text-align: center;
+      padding-bottom: 1rem;
+      font-size: 2rem;
+      color: var(--rojo);
+    }
+
     .horarios-mobile { display: none; }
 
     table {
