@@ -168,7 +168,7 @@
  
     .disciplinas-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1px;
       background: rgba(255, 255, 255, 0.059);
     }
@@ -304,6 +304,7 @@
     .clase-kick-senior { color: var(--kickboxing-senior-color); font-weight: 900; font-size: 16px;}
     .clase-grappling { color: var(--grappling-color); font-weight: 900; font-size: 16px;}
     .clase-funcional { color: var(--entrenamiento-funcional-color); font-weight: 900; font-size: 16px;}
+    .clase-baile { color: var(--baile-color); font-weight: 900; font-size: 16px;}
     /* =====================
       INSCRIPCIÓN
       ===================== */
