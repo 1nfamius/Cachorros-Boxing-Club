@@ -490,7 +490,7 @@ async function cargarAnuncios() {
     // NOTICIAS
     // --------------------------------------
 
-const ahora = new Date();
+const hora = new Date();
 
 const haceSieteDias = new Date(ahora);
 haceSieteDias.setDate(ahora.getDate() - 7);
