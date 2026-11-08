@@ -490,27 +490,41 @@ async function cargarAnuncios() {
     // NOTICIAS
     // --------------------------------------
 
-    const noticias = publicaciones
+const ahora = new Date();
 
-      .filter(d =>
-        d &&
-        d.tipo === "noticia" &&
-        d.fecha
-      )
+const haceSieteDias = new Date(ahora);
+haceSieteDias.setDate(ahora.getDate() - 7);
 
-      .filter(d => !isNaN(new Date(d.fecha)))
+const noticias = publicaciones
 
-      .sort((a, b) =>
-        new Date(b.fecha) - new Date(a.fecha)
-      )
+  .filter(d =>
+    d &&
+    d.tipo === "noticia" &&
+    d.fecha
+  )
 
-      .slice(0, 3)
+  .map(d => ({
+    ...d,
+    fechaObj: new Date(d.fecha + "T12:00:00")
+  }))
 
-      .map(d => ({
-        ...d,
-        categoria: "noticia",
-        fechaObj: new Date(d.fecha + "T12:00:00")
-      }));
+  // Solo noticias publicadas en los últimos 7 días
+  .filter(d =>
+    !isNaN(d.fechaObj) &&
+    d.fechaObj >= haceSieteDias &&
+    d.fechaObj <= ahora
+  )
+
+  .sort((a, b) =>
+    b.fechaObj - a.fechaObj
+  )
+
+  .slice(0, 3)
+
+  .map(d => ({
+    ...d,
+    categoria: "noticia"
+  }));
 
     // --------------------------------------
     // COMBINAR ANUNCIOS
