@@ -1,946 +1,280 @@
+(function () {
+  // ======================================
+  // CONFIG
+  // ======================================
+  const GITHUB_USER = "1nfamius";
+  const GITHUB_REPO = "Cachorros-Boxing-Club";
+  const GITHUB_BRANCH = "main";
+  const CONTENT_PATH = "content/noticias";
 
-(function() {
+  const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${CONTENT_PATH}`;
+  // raw.githubusercontent se refresca en ~5 min (jsDelivr puede tardar horas con @main)
+  const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${CONTENT_PATH}`;
 
-const GITHUB_USER = "1nfamius";
-const GITHUB_REPO = "Cachorros-Boxing-Club";
-const GITHUB_BRANCH = "main";
-const CONTENT_PATH = "content/noticias";
+  const DIAS_NOTICIA = 7;        // días que una noticia está en la barra
+  const MAX_ITEMS = 3;           // máximo de anuncios en la barra
+  const ROTACION_MS = 6000;      // cambio automático de anuncio
+  const CACHE_MIN = 5;           // minutos de caché en sessionStorage
+  const CACHE_KEY = "cbc_publicaciones_v1";
 
-const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${CONTENT_PATH}`;
-const RAW_BASE = `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${GITHUB_BRANCH}/${CONTENT_PATH}`;
+  let items = [];
+  let indice = 0;
+  let timerRotacion = null;
 
-let anuncios = [];
-let index = 0;
-let intervalo = null;
+  // ======================================
+  // UTILIDADES
+  // ======================================
+  function esc(s) {
+    return String(s ?? "").replace(/[&<>"']/g, c => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[c]));
+  }
 
-function resolverImagen(ruta) {
-  if (!ruta) return "";
-  if (ruta.startsWith("http")) return ruta;
-  const limpia = ruta.replace(/^\//, "");
-  return `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${GITHUB_BRANCH}/${limpia}`;
-}
+  function parseFecha(valor, hora) {
+    if (!valor) return null;
+    const s = String(valor).trim();
+    let d;
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
+      let h = "00:00";
+      if (hora && /^\d{1,2}:\d{2}$/.test(String(hora).trim())) {
+        h = String(hora).trim().padStart(5, "0");
+      }
+      d = new Date(`${s}T${h}:00`);
+    } else {
+      d = new Date(s);
+    }
+    return isNaN(d) ? null : d;
+  }
 
-function parsearFrontmatter(texto) {
-  const match = texto.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (!match) return null;
+  function formatearFecha(d) {
+    return d.toLocaleDateString("es-ES", { day: "numeric", month: "long" });
+  }
 
-  const data = {};
+  function resolverImagen(ruta) {
+    if (!ruta) return "";
+    if (/^https?:/.test(ruta)) return ruta;
+    return `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${ruta.replace(/^\//, "")}`;
+  }
 
-  match[1].split("\n").forEach(linea => {
-    const sep = linea.indexOf(": ");
-    if (sep === -1) return;
+  function parsearMarkdown(texto, archivo) {
+    const match = texto.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)([\s\S]*)$/);
+    if (!match) return null;
+    const pub = { archivo: archivo.replace(/\.md$/, "") };
+    match[1].split(/\r?\n/).forEach(linea => {
+      const i = linea.indexOf(": ");
+      if (i === -1) return;
+      const clave = linea.slice(0, i).trim();
+      const valor = linea.slice(i + 2).trim().replace(/^["'](.*)["']$/, "$1");
+      if (clave) pub[clave] = valor;
+    });
+    return pub;
+  }
 
-    const clave = linea.slice(0, sep).trim();
-    const valor = linea.slice(sep + 2).trim().replace(/^"(.*)"$/, "$1");
+  // ======================================
+  // CARGA DE DATOS (con caché para no agotar la API de GitHub)
+  // ======================================
+  async function cargarPublicaciones() {
+    try {
+      const guardado = JSON.parse(sessionStorage.getItem(CACHE_KEY) || "null");
+      if (guardado && Date.now() - guardado.t < CACHE_MIN * 60000) return guardado.data;
+    } catch (_) {}
 
-    if (clave) data[clave] = valor;
-  });
-
-  return data;
-}
-
-function formatearFecha(fecha) {
-  if (!fecha) return "";
-
-  const d = new Date(fecha + (fecha.length === 10 ? "T12:00:00" : ""));
-
-  if (isNaN(d)) return "";
-
-  return d.toLocaleDateString("es-ES", {
-    day: "numeric",
-    month: "long"
-  });
-}
-
-function escaparHTML(texto) {
-  return String(texto || "").replace(/[&<>"']/g, c => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[c]);
-}
-
-async function cargarAnuncios() {
-  try {
-    const res = await fetch(API_URL + `?_=${Date.now()}`);
-    if (!res.ok) throw new Error("Error listando publicaciones");
-
+    const res = await fetch(API_URL);
+    if (!res.ok) throw new Error("No se pudo listar el contenido");
     const archivos = await res.json();
 
-    const mds = archivos
-      .filter(f => f.name.endsWith(".md"))
-      .map(f => f.name);
-
-    const publicaciones = await Promise.all(
-      mds.map(async nombre => {
-        try {
-          const r = await fetch(`${RAW_BASE}/${nombre}?_=${Date.now()}`);
-          if (!r.ok) return null;
-
-          const texto = await r.text();
-          const data = parsearFrontmatter(texto);
-
-          return data ? { ...data, archivo: nombre } : null;
-
-        } catch {
-          return null;
-        }
-      })
+    const pubs = await Promise.all(
+      archivos
+        .filter(f => f.name.endsWith(".md"))
+        .map(async f => {
+          try {
+            const r = await fetch(`${RAW_BASE}/${encodeURIComponent(f.name)}`);
+            if (!r.ok) return null;
+            return parsearMarkdown(await r.text(), f.name);
+          } catch (_) { return null; }
+        })
     );
 
-    const ahora = new Date();
+    const data = pubs.filter(Boolean);
+    try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), data })); } catch (_) {}
+    return data;
+  }
 
+  // ======================================
+  // CONSTRUIR LISTA DE LA BARRA
+  // ======================================
+  function construirItems(publicaciones, ahora) {
+    // --- COMBATES: visibles desde su publicación hasta la hora del combate ---
     const combates = publicaciones
-      .filter(d => d && d.tipo === "combate" && d.fecha_combate)
-      .map(d => ({
-        ...d,
-        fechaObj: new Date(
-          d.fecha_combate + "T" + (d.hora_combate || "20:00")
-        )
-      }))
-      .filter(c =>
-        !isNaN(c.fechaObj) &&
-        c.fechaObj >= new Date(ahora.getTime() - 86400000)
-      )
-      .map(d => ({ ...d, categoria: "combate" }));
+      .filter(p => p && p.tipo === "combate")
+      .map(p => {
+        const fin = parseFecha(p.fecha_combate || p.fecha, p.hora_combate || "23:59");
+        const inicio = parseFecha(p.fecha);
+        return fin ? { ...p, categoria: "combate", inicio, fin } : null;
+      })
+      .filter(p => p && p.fin > ahora && (!p.inicio || p.inicio <= ahora))
+      .sort((a, b) => a.fin - b.fin);
 
-    // Solo mostramos las 3 noticias más recientes
+    // --- NOTICIAS: 7 días desde la fecha de publicación ---
     const noticias = publicaciones
-      .filter(d => d && d.tipo === "noticia" && d.fecha)
-      .filter(d => !isNaN(new Date(d.fecha)))
-      .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
-      .slice(0, 3)
-      .map(d => ({
-        ...d,
-        categoria: "noticia",
-        fechaObj: new Date(d.fecha + "T12:00:00")
-      }));
-
-    // Combinamos noticias y combates
-    anuncios = [...combates, ...noticias];
-
-    // Primero las publicaciones más recientes o próximas
-    anuncios.sort((a, b) => b.fechaObj - a.fechaObj);
-
-    if (!anuncios.length) return;
-
-    iniciarBarra();
-
-  } catch (err) {
-    console.error("Announcement bar error:", err);
-  }
-}
-
-function iniciarBarra() {
-  const container = document.getElementById("fight-bar-container");
-  if (!container) return;
-
-  container.innerHTML = `
-    <div class="fight-bar">
-      <a id="fight-link" href="#" class="fight-link">
-        <span id="fight-label" class="fight-label"></span>
-        <span id="fight-main" class="fight-main"></span>
-        <span id="fight-extra" class="fight-extra"></span>
-        <span id="fight-countdown" class="fight-countdown" style="display:none"></span>
-      </a>
-      <div id="fight-dots" class="fight-dots"></div>
-    </div>
-  `;
-
-  document.body.classList.add("has-fight-bar");
-
-  ajustarOffset();
-  window.addEventListener("resize", ajustarOffset);
-  setTimeout(ajustarOffset, 300);
-
-  renderAnuncio(anuncios[index]);
-  renderDots();
-  iniciarRotacion();
-}
-
-function ajustarOffset() {
-  const bar = document.querySelector(".fight-bar");
-  if (!bar) return;
-
-  document.documentElement.style.setProperty(
-    "--fight-bar-height",
-    bar.offsetHeight + "px"
-  );
-}
-
-function renderDots() {
-  const dotsEl = document.getElementById("fight-dots");
-  if (!dotsEl) return;
-
-  if (anuncios.length <= 1) {
-    dotsEl.innerHTML = "";
-    return;
-  }
-
-  dotsEl.innerHTML = anuncios.map((_, i) => `
-    <span class="fight-dot ${i === index ? "active" : ""}" data-i="${i}"></span>
-  `).join("");
-
-  dotsEl.querySelectorAll(".fight-dot").forEach(dot => {
-    dot.addEventListener("click", e => {
-      e.preventDefault();
-
-      const i = parseInt(dot.dataset.i);
-      if (i === index) return;
-
-      clearInterval(intervalo);
-      index = i;
-
-      renderAnuncio(anuncios[index]);
-      iniciarRotacion();
-    });
-  });
-}
-
-function renderAnuncio(anuncio) {
-  if (!anuncio) return;
-
-  const label = document.getElementById("fight-label");
-  const main = document.getElementById("fight-main");
-  const extra = document.getElementById("fight-extra");
-  const countdown = document.getElementById("fight-countdown");
-  const link = document.getElementById("fight-link");
-
-  if (!label || !main || !extra || !countdown || !link) return;
-
-  const esCombate = anuncio.categoria === "combate";
-
-  // Reiniciamos los estilos de categoría
-  const bar = document.querySelector(".fight-bar");
-  bar.dataset.tipo = anuncio.categoria;
-
-  if (esCombate) {
-    renderCombate(anuncio, label, main, extra, countdown, link);
-  } else {
-    renderNoticia(anuncio, label, main, extra, countdown, link);
-  }
-
-  renderDots();
-  ajustarOffset();
-}
-
-function renderCombate(c, label, main, extra, countdown, link) {
-  const diff = c.fechaObj - new Date();
-
-  const esHoy = diff > -86400000 && diff <= 0;
-  const esFuturo = diff > 0;
-
-  label.textContent = esHoy
-    ? "HOY HAY COMBATE"
-    : esFuturo
-      ? "PRÓXIMA PELEA"
-      : "COMBATE";
-
-  const titulo = c.peleador && c.rival
-    ? `${escaparHTML(c.peleador)} <span class="fight-vs">VS</span> ${escaparHTML(c.rival)}`
-    : escaparHTML(c.titulo || "");
-
-  main.innerHTML = titulo;
-
-  extra.textContent =
-    `${c.lugar || ""} · ${formatearFecha(c.fecha_combate)} · ${c.hora_combate || ""}`;
-
-  const imgCartelera = resolverImagen(c.cartelera || c.imagen);
-
-  link.href = "#";
-  link.onclick = imgCartelera
-    ? e => {
-        e.preventDefault();
-        abrirCartelera(imgCartelera);
-      }
-    : null;
-
-  countdown.style.display = esFuturo ? "inline-flex" : "none";
-
-  if (countdown._timer) {
-    clearInterval(countdown._timer);
-    countdown._timer = null;
-  }
-
-  if (esFuturo) iniciarCountdown(c.fechaObj);
-}
-
-function renderNoticia(n, label, main, extra, countdown, link) {
-  label.textContent = "ÚLTIMA NOTICIA";
-
-  main.textContent = n.titulo || "Nueva noticia";
-
-  extra.textContent =
-    n.resumen || formatearFecha(n.fecha);
-
-  countdown.style.display = "none";
-
-  if (countdown._timer) {
-    clearInterval(countdown._timer);
-    countdown._timer = null;
-  }
-
-  // Acceso a la sección de noticias
-  link.href = "noticias.html";
-  link.onclick = null;
-}
-
-function iniciarCountdown(fechaObj) {
-  const el = document.getElementById("fight-countdown");
-  if (!el) return;
-
-  if (el._timer) clearInterval(el._timer);
-
-  const tick = () => {
-    const diff = fechaObj - new Date();
-
-    if (diff <= 0) {
-      el.textContent = "EN CURSO";
-      clearInterval(el._timer);
-      el._timer = null;
-      return;
-    }
-
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff / 3600000) % 24);
-    const m = Math.floor((diff / 60000) % 60);
-    const s = Math.floor((diff / 1000) % 60);
-
-    el.textContent = `${d}d ${h}h ${m}m ${s}s`;
-  };
-
-  tick();
-  el._timer = setInterval(tick, 1000);
-}
-
-function iniciarRotacion() {
-  if (anuncios.length <= 1) return;
-
-  intervalo = setInterval(() => {
-    index = (index + 1) % anuncios.length;
-    renderAnuncio(anuncios[index]);
-  }, 8000);
-}
-
-// Modal cartelera
-function abrirCartelera(src) {
-  const modal = document.getElementById("cartelera-modal");
-  const img = document.getElementById("cartelera-img");
-
-  if (!modal || !img) return;
-
-  img.src = src;
-  modal.classList.add("open");
-  document.body.style.overflow = "hidden";
-}
-
-window.cerrarCartelera = function() {
-  const modal = document.getElementById("cartelera-modal");
-  if (!modal) return;
-
-(function() {
-
-const GITHUB_USER = "1nfamius";
-const GITHUB_REPO = "Cachorros-Boxing-Club";
-const GITHUB_BRANCH = "main";
-const CONTENT_PATH = "content/noticias";
-
-const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${CONTENT_PATH}`;
-const RAW_BASE = `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${GITHUB_BRANCH}/${CONTENT_PATH}`;
-
-let anuncios = [];
-let index = 0;
-let intervalo = null;
-
-// ==========================================
-// UTILIDADES
-// ==========================================
-
-function resolverImagen(ruta) {
-  if (!ruta) return "";
-
-  if (ruta.startsWith("http")) return ruta;
-
-  const limpia = ruta.replace(/^\//, "");
-
-  return `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${GITHUB_BRANCH}/${limpia}`;
-}
-
-function parsearFrontmatter(texto) {
-  const match = texto.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-
-  if (!match) return null;
-
-  const data = {};
-
-  match[1].split("\n").forEach(linea => {
-    const sep = linea.indexOf(": ");
-
-    if (sep === -1) return;
-
-    const clave = linea.slice(0, sep).trim();
-
-    const valor = linea.slice(sep + 2)
-      .trim()
-      .replace(/^"(.*)"$/, "$1");
-
-    if (clave) data[clave] = valor;
-  });
-
-  return data;
-}
-
-function formatearFecha(fecha) {
-  if (!fecha) return "";
-
-  const d = new Date(
-    fecha + (fecha.length === 10 ? "T12:00:00" : "")
-  );
-
-  if (isNaN(d)) return "";
-
-  return d.toLocaleDateString("es-ES", {
-    day: "numeric",
-    month: "long"
-  });
-}
-
-function escaparHTML(texto) {
-  return String(texto || "").replace(/[&<>"']/g, c => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[c]);
-}
-
-// ==========================================
-// CARGAR PUBLICACIONES
-// ==========================================
-
-async function cargarAnuncios() {
-
-  try {
-
-    const res = await fetch(API_URL + `?_=${Date.now()}`);
-
-    if (!res.ok) {
-      throw new Error("Error listando publicaciones");
-    }
-
-    const archivos = await res.json();
-
-    const mds = archivos
-      .filter(f => f.name.endsWith(".md"))
-      .map(f => f.name);
-
-    const publicaciones = await Promise.all(
-      mds.map(async nombre => {
-
-        try {
-
-          const r = await fetch(`${RAW_BASE}/${nombre}?_=${Date.now()}`);
-
-          if (!r.ok) return null;
-
-          const texto = await r.text();
-
-          const data = parsearFrontmatter(texto);
-
-          return data ? { ...data, archivo: nombre } : null;
-
-        } catch {
-          return null;
-        }
-
+      .filter(p => p && p.tipo === "noticia")
+      .map(p => {
+        const inicio = parseFecha(p.fecha);
+        if (!inicio) return null;
+        inicio.setHours(0, 0, 0, 0);
+        const fin = new Date(inicio);
+        fin.setDate(fin.getDate() + DIAS_NOTICIA);
+        return { ...p, categoria: "noticia", inicio, fin };
       })
-    );
+      .filter(p => p && p.inicio <= ahora && ahora < p.fin)
+      .sort((a, b) => b.inicio - a.inicio);
+
+    // Combates primero (prioridad), luego noticias
+    return [...combates, ...noticias].slice(0, MAX_ITEMS);
+  }
+
+  // ======================================
+  // RENDER (usa las clases de styles.css)
+  // ======================================
+  function cuentaAtras(ms) {
+    if (ms <= 0) return "¡YA!";
+    const min = Math.floor(ms / 60000);
+    const d = Math.floor(min / 1440);
+    const h = Math.floor((min % 1440) / 60);
+    const m = min % 60;
+    if (d > 0) return `${d}d ${h}h`;
+    if (h > 0) return `${h}h ${m}m`;
+    return `${m}m`;
+  }
+
+  function actualizarCuentas() {
+    document.querySelectorAll(".fight-countdown[data-fin]").forEach(el => {
+      el.textContent = cuentaAtras(Number(el.dataset.fin) - Date.now());
+    });
+  }
+
+  function textoCuando(item, ahora) {
+    const d = item.fin;
+    const manana = new Date(ahora);
+    manana.setDate(manana.getDate() + 1);
+    const dia = d.toDateString() === ahora.toDateString() ? "Hoy"
+      : d.toDateString() === manana.toDateString() ? "Mañana"
+      : formatearFecha(d);
+    const hora = (item.hora_combate || "").trim();
+    return hora ? `${dia} · ${esc(hora)}` : dia;
+  }
+
+  function htmlItem(item, ahora) {
+    if (item.categoria === "combate") {
+      const cartelera = resolverImagen(item.cartelera);
+      const vs = (item.peleador || item.rival)
+        ? `${esc(item.peleador || "?")} <span class="fight-vs">VS</span> ${esc(item.rival || "?")}`
+        : esc(item.titulo || "Próximo combate");
+      const extra = [item.lugar ? esc(item.lugar) : "", textoCuando(item, ahora)]
+        .filter(Boolean).join(" · ");
+
+      const attrs = cartelera
+        ? `href="#" data-img="${esc(cartelera)}" onclick="abrirCartelera(this.dataset.img); return false;"`
+        : `href="/noticias#${encodeURIComponent(item.archivo)}"`;
+
+      return `
+        <a class="fight-link" ${attrs}>
+          <span class="fight-label">🥊 COMBATE</span>
+          <span class="fight-main">${vs}</span>
+          <span class="fight-extra">${extra}</span>
+          <span class="fight-countdown" data-fin="${item.fin.getTime()}"></span>
+        </a>`;
+    }
+
+    // NOTICIA
+    const img = resolverImagen(item.imagen);
+    const attrs = img
+      ? `href="#" data-img="${esc(img)}" onclick="abrirCartelera(this.dataset.img); return false;"`
+      : `href="/noticias#${encodeURIComponent(item.archivo)}"`;
+
+    return `
+      <a class="fight-link" ${attrs}>
+        <span class="fight-label">📰 NOTICIA</span>
+        <span class="fight-main">${esc(item.titulo || "Nueva noticia")}</span>
+        ${item.resumen ? `<span class="fight-extra">${esc(item.resumen)}</span>` : ""}
+      </a>`;
+  }
+
+  function pintar() {
+    const cont = document.getElementById("fight-bar-container");
+    if (!cont) return;
 
     const ahora = new Date();
-
-    // --------------------------------------
-    // COMBATES
-    // --------------------------------------
-
-    const combates = publicaciones
-
-      .filter(d =>
-        d &&
-        d.tipo === "combate" &&
-        d.fecha_combate
-      )
-
-      .map(d => ({
-        ...d,
-        categoria: "combate",
-        fechaObj: new Date(
-          d.fecha_combate + "T" + (d.hora_combate || "20:00")
-        )
-      }))
-
-      .filter(c =>
-        !isNaN(c.fechaObj) &&
-        c.fechaObj >= new Date(ahora.getTime() - 86400000)
-      );
-
-    // --------------------------------------
-    // NOTICIAS
-    // --------------------------------------
-
-const hora = new Date();
-
-const haceSieteDias = new Date(ahora);
-haceSieteDias.setDate(ahora.getDate() - 7);
-
-const noticias = publicaciones
-
-  .filter(d =>
-    d &&
-    d.tipo === "noticia" &&
-    d.fecha
-  )
-
-  .map(d => ({
-    ...d,
-    fechaObj: new Date(d.fecha + "T12:00:00")
-  }))
-
-  // Solo noticias publicadas en los últimos 7 días
-  .filter(d =>
-    !isNaN(d.fechaObj) &&
-    d.fechaObj >= haceSieteDias &&
-    d.fechaObj <= ahora
-  )
-
-  .sort((a, b) =>
-    b.fechaObj - a.fechaObj
-  )
-
-  .slice(0, 3)
-
-  .map(d => ({
-    ...d,
-    categoria: "noticia"
-  }));
-
-    // --------------------------------------
-    // COMBINAR ANUNCIOS
-    // --------------------------------------
-
-    anuncios = [...combates, ...noticias];
-
-    anuncios.sort((a, b) => {
-
-      // Combates: primero los más próximos
-      if (
-        a.categoria === "combate" &&
-        b.categoria === "combate"
-      ) {
-        return a.fechaObj - b.fechaObj;
-      }
-
-      // Noticias: primero las más recientes
-      if (
-        a.categoria === "noticia" &&
-        b.categoria === "noticia"
-      ) {
-        return b.fechaObj - a.fechaObj;
-      }
-
-      // Prioridad visual para los combates
-      return a.categoria === "combate" ? -1 : 1;
-
-    });
-
-    if (!anuncios.length) return;
-
-    iniciarBarra();
-
-  } catch (err) {
-
-    console.error("Announcement bar error:", err);
-
-  }
-
-}
-
-// ==========================================
-// INICIAR BARRA
-// ==========================================
-
-function iniciarBarra() {
-
-  const container = document.getElementById("fight-bar-container");
-
-  if (!container) return;
-
-  container.innerHTML = `
-    <div class="fight-bar">
-
-      <a id="fight-link" href="#" class="fight-link">
-
-        <span id="fight-label" class="fight-label"></span>
-
-        <span id="fight-main" class="fight-main"></span>
-
-        <span id="fight-extra" class="fight-extra"></span>
-
-        <span
-          id="fight-countdown"
-          class="fight-countdown"
-          style="display:none"
-        ></span>
-
-      </a>
-
-      <div id="fight-dots" class="fight-dots"></div>
-
-    </div>
-  `;
-
-  document.body.classList.add("has-fight-bar");
-
-  ajustarOffset();
-
-  window.addEventListener("resize", ajustarOffset);
-
-  setTimeout(ajustarOffset, 300);
-
-  renderAnuncio(anuncios[index]);
-
-  iniciarRotacion();
-
-}
-
-// ==========================================
-// AJUSTAR ALTURA DE LA BARRA
-// ==========================================
-
-function ajustarOffset() {
-
-  const bar = document.querySelector(".fight-bar");
-
-  if (!bar) return;
-
-  document.documentElement.style.setProperty(
-    "--fight-bar-height",
-    bar.offsetHeight + "px"
-  );
-
-}
-
-// ==========================================
-// INDICADORES DE NAVEGACIÓN
-// ==========================================
-
-function renderDots() {
-
-  const dotsEl = document.getElementById("fight-dots");
-
-  if (!dotsEl) return;
-
-  if (anuncios.length <= 1) {
-    dotsEl.innerHTML = "";
-    return;
-  }
-
-  dotsEl.innerHTML = anuncios.map((_, i) => `
-    <span
-      class="fight-dot ${i === index ? "active" : ""}"
-      data-i="${i}"
-    ></span>
-  `).join("");
-
-  dotsEl.querySelectorAll(".fight-dot").forEach(dot => {
-
-    dot.addEventListener("click", e => {
-
-      e.preventDefault();
-
-      const i = parseInt(dot.dataset.i);
-
-      if (i === index) return;
-
-      clearInterval(intervalo);
-
-      index = i;
-
-      renderAnuncio(anuncios[index]);
-
-      iniciarRotacion();
-
-    });
-
-  });
-
-}
-
-// ==========================================
-// RENDERIZAR ANUNCIO
-// ==========================================
-
-function renderAnuncio(anuncio) {
-
-  if (!anuncio) return;
-
-  const label = document.getElementById("fight-label");
-  const main = document.getElementById("fight-main");
-  const extra = document.getElementById("fight-extra");
-  const countdown = document.getElementById("fight-countdown");
-  const link = document.getElementById("fight-link");
-
-  if (!label || !main || !extra || !countdown || !link) return;
-
-  const bar = document.querySelector(".fight-bar");
-
-  if (bar) {
-    bar.dataset.tipo = anuncio.categoria;
-  }
-
-  if (anuncio.categoria === "combate") {
-
-    renderCombate(
-      anuncio,
-      label,
-      main,
-      extra,
-      countdown,
-      link
-    );
-
-  } else {
-
-    renderNoticia(
-      anuncio,
-      label,
-      main,
-      extra,
-      countdown,
-      link
-    );
-
-  }
-
-  renderDots();
-
-  ajustarOffset();
-
-}
-
-// ==========================================
-// RENDERIZAR COMBATE
-// ==========================================
-
-function renderCombate(c, label, main, extra, countdown, link) {
-
-  const diff = c.fechaObj - new Date();
-
-  const esHoy = diff > -86400000 && diff <= 0;
-
-  const esFuturo = diff > 0;
-
-  label.textContent = esHoy
-    ? "HOY HAY COMBATE"
-    : esFuturo
-      ? "PRÓXIMA PELEA"
-      : "COMBATE";
-
-  const titulo = c.peleador && c.rival
-
-    ? `${escaparHTML(c.peleador)}
-       <span class="fight-vs">VS</span>
-       ${escaparHTML(c.rival)}`
-
-    : escaparHTML(c.titulo || "");
-
-  main.innerHTML = titulo;
-
-  extra.textContent =
-    `${c.lugar || ""} · ${formatearFecha(c.fecha_combate)} · ${c.hora_combate || ""}`;
-
-  const imgCartelera = resolverImagen(
-    c.cartelera || c.imagen
-  );
-
-  link.href = "#";
-
-  link.onclick = imgCartelera
-
-    ? e => {
-        e.preventDefault();
-        abrirCartelera(imgCartelera);
-      }
-
-    : null;
-
-  countdown.style.display = esFuturo
-    ? "inline-flex"
-    : "none";
-
-  if (countdown._timer) {
-    clearInterval(countdown._timer);
-    countdown._timer = null;
-  }
-
-  if (esFuturo) {
-    iniciarCountdown(c.fechaObj);
-  }
-
-}
-
-// ==========================================
-// RENDERIZAR NOTICIA
-// ==========================================
-
-function renderNoticia(n, label, main, extra, countdown, link) {
-
-  label.textContent = "ÚLTIMA NOTICIA";
-
-  main.textContent = n.titulo || "Nueva noticia";
-
-  extra.textContent =
-    n.resumen || formatearFecha(n.fecha);
-
-  countdown.style.display = "none";
-
-  if (countdown._timer) {
-    clearInterval(countdown._timer);
-    countdown._timer = null;
-  }
-
-  link.href = "noticias.html";
-
-  link.onclick = null;
-
-}
-
-// ==========================================
-// CUENTA ATRÁS
-// ==========================================
-
-function iniciarCountdown(fechaObj) {
-
-  const el = document.getElementById("fight-countdown");
-
-  if (!el) return;
-
-  if (el._timer) clearInterval(el._timer);
-
-  const tick = () => {
-
-    const diff = fechaObj - new Date();
-
-    if (diff <= 0) {
-
-      el.textContent = "EN CURSO";
-
-      clearInterval(el._timer);
-
-      el._timer = null;
-
+    items = items.filter(i => i.fin > ahora); // quita lo caducado sin recargar
+
+    if (items.length === 0) {
+      cont.innerHTML = "";
+      document.body.classList.remove("has-fight-bar");
+      clearInterval(timerRotacion);
       return;
-
     }
+    if (indice >= items.length) indice = 0;
 
-    const d = Math.floor(diff / 86400000);
+    const dots = items.length > 1
+      ? `<div class="fight-dots">${items.map((_, i) =>
+          `<span class="fight-dot${i === indice ? " active" : ""}" onclick="fightBarIr(${i})"></span>`
+        ).join("")}</div>`
+      : "";
 
-    const h = Math.floor((diff / 3600000) % 24);
+    cont.innerHTML = `<div class="fight-bar">${htmlItem(items[indice], ahora)}${dots}</div>`;
+    document.body.classList.add("has-fight-bar");
+    actualizarCuentas();
+  }
 
-    const m = Math.floor((diff / 60000) % 60);
+  function iniciarRotacion() {
+    clearInterval(timerRotacion);
+    if (items.length < 2) return;
+    timerRotacion = setInterval(() => {
+      indice = (indice + 1) % items.length;
+      pintar();
+    }, ROTACION_MS);
+  }
 
-    const s = Math.floor((diff / 1000) % 60);
-
-    el.textContent = `${d}d ${h}h ${m}m ${s}s`;
-
+  window.fightBarIr = function (i) {
+    indice = i;
+    pintar();
+    iniciarRotacion();
   };
 
-  tick();
+  // ======================================
+  // MODAL DE CARTELERA (tu CSS usa .open)
+  // ======================================
+  window.abrirCartelera = function (src) {
+    const modal = document.getElementById("cartelera-modal");
+    const img = document.getElementById("cartelera-img");
+    if (!modal || !img) return;
+    img.src = src;
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  };
 
-  el._timer = setInterval(tick, 1000);
+  window.cerrarCartelera = function () {
+    const modal = document.getElementById("cartelera-modal");
+    if (!modal) return;
+    modal.classList.remove("open");
+    document.body.style.overflow = "";
+  };
 
-}
-
-// ==========================================
-// ROTACIÓN AUTOMÁTICA
-// ==========================================
-
-function iniciarRotacion() {
-
-  if (anuncios.length <= 1) return;
-
-  intervalo = setInterval(() => {
-
-    index = (index + 1) % anuncios.length;
-
-    renderAnuncio(anuncios[index]);
-
-  }, 8000);
-
-}
-
-// ==========================================
-// MODAL CARTELERA
-// ==========================================
-
-function abrirCartelera(src) {
-
-  const modal = document.getElementById("cartelera-modal");
-
-  const img = document.getElementById("cartelera-img");
-
-  if (!modal || !img) return;
-
-  img.src = src;
-
-  modal.classList.add("open");
-
-  document.body.style.overflow = "hidden";
-
-}
-
-// ==========================================
-// CERRAR MODAL
-// ==========================================
-
-window.cerrarCartelera = function() {
-
-  const modal = document.getElementById("cartelera-modal");
-
-  if (!modal) return;
-
-  modal.classList.remove("open");
-
-  document.body.style.overflow = "";
-
-};
-
-document.addEventListener("keydown", e => {
-
-  if (e.key === "Escape") {
-    window.cerrarCartelera();
+  // ======================================
+  // INIT
+  // ======================================
+  async function init() {
+    try {
+      const publicaciones = await cargarPublicaciones();
+      items = construirItems(publicaciones, new Date());
+      pintar();
+      iniciarRotacion();
+      setInterval(pintar, 60000);         // quita lo que caduque
+      setInterval(actualizarCuentas, 30000); // refresca cuentas atrás
+    } catch (err) {
+      console.error("Fight bar:", err);
+    }
   }
 
-});
-
-// ==========================================
-// INICIAR SISTEMA
-// ==========================================
-
-cargarAnuncios();
-
-})();
-
-  modal.classList.remove("open");
-  document.body.style.overflow = "";
-};
-
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") window.cerrarCartelera();
-});
-
-cargarAnuncios();
-
+  document.addEventListener("DOMContentLoaded", init);
 })();
